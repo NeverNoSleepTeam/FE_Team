@@ -1,3 +1,3 @@
-export default function login(){
-	return ( <div>로그인</div>)
+export default function local() {
+	return <div>로그인</div>;
 }

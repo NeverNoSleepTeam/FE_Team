@@ -1,0 +1,25 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+html,
+body {
+	max-width: 100vw;
+	overflow-x: hidden;
+	font-size: 62.5%;
+	font-weight: 400;
+}
+
+ul,
+li,
+ol,
+dl {
+	list-style: none;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}

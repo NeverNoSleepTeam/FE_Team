@@ -1,0 +1,19 @@
+@import './mixins.module';
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@include desktop {
+ .container {
+  padding: 0 10rem;
+ }
+}
+
+@include mobile {
+  .container {
+    padding: 0 2rem;
+  }
+}

@@ -1,14 +1,18 @@
 @import './mixins.module';
 
+.container {
+	padding: 0 10rem;
+}
+
 @include desktop {
 	.container {
-		padding: 0 10rem;
+		padding: 0 5rem;
 	}
 }
 
 @include tablet {
 	.container {
-		padding: 0 3rem;
+		padding: 0 2.5rem;
 	}
 }
 

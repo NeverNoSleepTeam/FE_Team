@@ -1,11 +1,12 @@
 import { ReactNode } from 'react';
+import Header from '@/app/_component/Header';
 
 type Props = { children: ReactNode };
 
 export default function Layout({ children }: Props) {
 	return (
 		<div>
-			레이아웃
+			<Header />
 			<main>{children}</main>
 		</div>
 	);

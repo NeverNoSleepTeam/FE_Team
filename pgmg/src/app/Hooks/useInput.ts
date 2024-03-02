@@ -1,4 +1,11 @@
-import { useState, useCallback, Dispatch, SetStateAction } from 'react';
+import {
+	useState,
+	useCallback,
+	Dispatch,
+	SetStateAction,
+	EventHandler,
+	ChangeEventHandler,
+} from 'react';
 
 const useInput = <T = any>(initialData: T): [T, (e: any) => void, Dispatch<SetStateAction<T>>] => {
 	const [value, setValue] = useState(initialData);

@@ -1,0 +1,15 @@
+.wrap {
+	display: flex;
+
+	.leftSection {
+		width: 28rem;
+		height: 100dvh;
+		background: #0ff;
+	}
+
+	.contentSection {
+		width: 100rem;
+		height: 100dvh;
+		background: #00f;
+	}
+}

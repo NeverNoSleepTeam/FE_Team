@@ -2,8 +2,8 @@
 
 import styles from './social.module.scss';
 import Image from 'next/image';
-import Kakaologo from '@/../public/kakao.png';
-import Googlelogo from '@/../public/google.png';
+import Kakaologo from '@/app/common/img/kakao.png';
+import Googlelogo from '@/app/common/img/google.png';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 

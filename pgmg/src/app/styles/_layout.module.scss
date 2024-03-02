@@ -1,11 +1,43 @@
 @import './mixins.module';
 
+.headerContainer {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+}
+
+.auth-container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
 .container {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+}
+
+.container {
+<<<<<<< HEAD
   width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+=======
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
+>>>>>>> 07322f84cd0a61476f3c7bb6678cecb2e6143a40
 }
 
 @include desktop {

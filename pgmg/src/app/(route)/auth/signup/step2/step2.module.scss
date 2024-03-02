@@ -1,0 +1,69 @@
+.TextInput{
+  border: 0;
+  font-size:1.6rem;
+  width:25rem;
+  &:focus{
+    outline: none;
+  }
+}
+.Container{
+  display: flex;
+  flex-direction: column;
+  gap : 2rem;
+
+}
+.Title{
+  font-size:3.6rem;
+  font-weight: bold;
+  text-align:center;
+}
+.subTitle{
+  font-size:1.6rem;
+  font-weight: 500;
+  text-align:center;
+}
+.SignUpForm{
+  width: 41.5rem;
+  display: flex;
+  flex-direction: column;
+  gap:2rem;
+}
+.SignupSubForm{
+  display: flex;
+  flex-direction: column;
+  gap:2rem;
+}
+.FormTitle{
+  text-align: left;
+  font-size:1.6rem;
+  font-weight: 500;
+  color:#4e4e53
+}
+.TextDiv{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding:2rem;
+  border : solid 0.1rem #efeff4;
+  border-radius: 1.2rem;
+}
+.IdCheckBtn{
+  border: 0;
+  border-radius: 1.2rem;
+  padding: 0.8rem 1.6rem;
+  background-color: #250996;
+  color : white;
+}
+.GenderList{
+  border:0;
+  width:100%;
+  font-size:1.6rem;
+}
+.IntroduceTextarea{
+  border: 0;
+  width: 100%;
+  font-size:1.6rem;
+  &:focus{
+    outline: none;
+  }
+}

@@ -20,7 +20,7 @@ export default function () {
 	}
 	const HandlerNextPage :MouseEventHandler<HTMLButtonElement> = ()=>{
 		if(agreeOne && agreeTwo){
-			router.replace('/');
+			router.replace('signup/step2');
 		}
 		else{
 			console.log('동의해줘')

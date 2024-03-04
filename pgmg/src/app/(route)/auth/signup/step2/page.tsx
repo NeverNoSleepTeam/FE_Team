@@ -15,7 +15,7 @@ export default function step2() {
 		console.log(e.target.value);
 	};
 	const onsubmit = useCallback(
-		e => {
+		async e => {
 			e.preventDefault();
 			console.log(UserId, UserPassword, CheckPassword, NickName);
 			if (!UserId.trim() && !UserPassword.trim() && !CheckPassword.trim() && !NickName.trim()) {
@@ -28,6 +28,20 @@ export default function step2() {
 				console.log(UserPassword.length, CheckPassword.length);
 				console.log('8글자 이상적어줘');
 			}
+			const response = await fetch(`${process.env.AUTH_URL}/auth/basic-register`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email: UserId,
+					passwd: UserPassword,
+					passwd2: CheckPassword,
+					name: NickName,
+					gender: '남성',
+					intro: 'h1h1',
+				}),
+			});
 		},
 		[UserId, UserPassword, CheckPassword, NickName],
 	);

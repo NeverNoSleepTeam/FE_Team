@@ -9,6 +9,7 @@ export default function () {
 	const [agreeOne,setAgreeOne] = useState(false);
 	const [agreeTwo,setAgreeTwo] = useState(false);
 	const [agreeThree,setAgreeThree] = useState(false);
+
 	const agreeOneHandler:MouseEventHandler<HTMLButtonElement> = ()=>{
 		setAgreeOne((prev)=>!prev)
 	}

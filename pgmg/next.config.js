@@ -6,6 +6,9 @@ const nextConfig = {
 	sassOptions: {
 		includePaths: [path.join(__dirname, 'styles')],
 	},
+	env: {
+		NEXT_PUBLIC_ENDPOINT: process.env.NEXT_PUBLIC_ENDPOINT,
+	},
 };
 
 module.exports = nextConfig;

@@ -1,9 +1,12 @@
 'use client';
 
-import layout from '@/app/styles/_layout.module.scss';
 import { ReactNode } from 'react';
 import { useSession } from 'next-auth/react';
 import { redirect } from 'next/navigation';
+import layout from '@/app/styles/_layout.module.scss';
+import style from '@/app/(auth)/auth/styles/authLayout.module.scss';
+import Header from '@/app/_component/Header';
+
 type Props = { children: ReactNode };
 
 export default function Layout({ children }: Props) {
@@ -12,8 +15,13 @@ export default function Layout({ children }: Props) {
 		redirect('/');
 	}
 	return (
-		<div>
-			<main className={layout.container}>{children}</main>
-		</div>
+		<>
+			<Header />
+			<main>
+				<div className={layout.container}>
+					<div className={style.authLayout}>{children}</div>
+				</div>
+			</main>
+		</>
 	);
 }

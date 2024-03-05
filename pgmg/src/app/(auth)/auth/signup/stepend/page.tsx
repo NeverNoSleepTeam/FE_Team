@@ -1,4 +1,4 @@
-import styles from './stepend.module.scss';
+import styles from '../../styles/stepend.module.scss';
 export default function stepend() {
 	return (
 		<div className={styles.container}>

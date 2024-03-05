@@ -1,10 +1,13 @@
 'use client';
 
 import { ChangeEventHandler, useCallback, useState } from 'react';
+import styles from '../../styles/step2.module.scss';
 import Image from 'next/image';
 import OpenBtn from '@/../public/openbtn.svg';
 import CloseBtn from '@/../public/closebtn.svg';
 import { signIn } from 'next-auth/react';
+import useInput from '@/app/Hooks/useInput';
+import TextareaAutosize from 'react-textarea-autosize';
 export default function step2() {
 	const [UserId, setUserId] = useState('');
 	const [UserPassword, setUserPassword] = useInput('');

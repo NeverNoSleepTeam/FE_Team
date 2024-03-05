@@ -1,20 +1,25 @@
 'use client';
 import styles from './login.module.scss';
 import useInput from '@/app/Hooks/useInput';
+import { signIn } from 'next-auth/react';
 export default function local() {
 	const [UserEmail, setEmail] = useInput('');
 	const [UserPassword, setPassword] = useInput('');
 	const onSubmit = async (e: any) => {
-		await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/basic-login`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				email: UserEmail,
-				passwd: UserPassword,
-			}),
+		e.preventDefault();
+		const result = await signIn('credentials', {
+			email: UserEmail,
+			password: UserPassword,
+			redirect: false, // 리다이렉션을 수동으로 처리하려면 false로 설정합니다.
 		});
+
+		if (result?.error) {
+			// 로그인 실패 처리
+			console.log('로그인 실패:', result.error);
+		} else {
+			// 로그인 성공 처리
+			console.log('로그인 성공:', result);
+		}
 	};
 	return (
 		<div className={styles.container}>

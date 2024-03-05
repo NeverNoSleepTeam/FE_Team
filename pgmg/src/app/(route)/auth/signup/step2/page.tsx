@@ -7,6 +7,7 @@ import { ChangeEventHandler, useCallback, useState } from 'react';
 import Image from 'next/image';
 import OpenBtn from '@/../public/openbtn.svg';
 import CloseBtn from '@/../public/closebtn.svg';
+import { signIn } from 'next-auth/react';
 export default function step2() {
 	const [UserId, setUserId] = useState('');
 	const [UserPassword, setUserPassword] = useInput('');
@@ -37,7 +38,7 @@ export default function step2() {
 			// if (UserPassword.length <= 8 && CheckPassword.length <= 8) {
 			// 	console.log(UserPassword.length, CheckPassword.length);
 			// 	console.log('8글자 이상적어줘');
-			// }{process.env.NEXTAUTH_URL}/
+			// }
 			await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/basic-register`, {
 				method: 'POST',
 				headers: {
@@ -52,6 +53,19 @@ export default function step2() {
 					intro: '안녕 나는짱구야',
 				}),
 			});
+			const result = await signIn('credentials', {
+				email: UserId,
+				password: UserPassword,
+				redirect: false, // 리다이렉션을 수동으로 처리하려면 false로 설정합니다.
+			});
+
+			if (result?.error) {
+				// 로그인 실패 처리
+				console.log('로그인 실패:', result.error);
+			} else {
+				// 로그인 성공 처리
+				console.log('로그인 성공:', result);
+			}
 		},
 		[UserId, UserPassword, CheckPassword, NickName],
 	);

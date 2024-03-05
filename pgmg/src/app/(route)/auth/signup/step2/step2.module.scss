@@ -54,13 +54,32 @@
   background-color: #250996;
   color : white;
 }
-.GenderList{
+.GenderForm{
   border:0;
   width:100%;
   font-size:1.6rem;
   background-color: white;
+  display: flex;
+  justify-content: space-between;
 }
-
+.GenderList{
+  display: flex;
+  flex-direction: column;
+  gap:1rem;
+  box-shadow: 10px 10px 10px #efeff4;
+  button{
+    border: 0;
+    width: 100%;
+    padding: 1.8rem 2.0rem;
+    background-color: transparent;
+    font-size: 1.6rem;
+    font-weight: 500;
+    text-align: left;
+  }
+  button:hover{
+    background-color: #efeff4;
+  }
+}
 .IntroduceTextarea{
   border: 0;
   width: 100%;

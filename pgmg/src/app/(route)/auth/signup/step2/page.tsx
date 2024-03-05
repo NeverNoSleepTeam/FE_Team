@@ -4,29 +4,67 @@ import styles from './step2.module.scss';
 import TextareaAutosize from 'react-textarea-autosize';
 import useInput from '@/app/Hooks/useInput';
 import { ChangeEventHandler, useCallback, useState } from 'react';
+import Image from 'next/image';
+import OpenBtn from '@/../public/openbtn.svg';
+import CloseBtn from '@/../public/closebtn.svg';
+import { signIn } from 'next-auth/react';
 export default function step2() {
 	const [UserId, setUserId] = useState('');
 	const [UserPassword, setUserPassword] = useInput('');
 	const [CheckPassword, setCheckPassword] = useInput('');
 	const [NickName, setNickName] = useInput('');
 	const [UserIntro, setUserIntro] = useInput('');
+	const [Gender, setGender] = useState('성별을 선택해주세요');
+	const [genderbtn, setgenderbtn] = useState(false);
 	const onText: ChangeEventHandler<HTMLInputElement> = e => {
 		setUserId(e.target.value);
 		console.log(e.target.value);
 	};
+	const ClickGender = useCallback((e: any) => {
+		setGender(e.target.value);
+		setgenderbtn(false);
+	}, []);
 	const onsubmit = useCallback(
-		e => {
+		async (e: any) => {
 			e.preventDefault();
-			console.log(UserId, UserPassword, CheckPassword, NickName);
-			if (!UserId.trim() && !UserPassword.trim() && !CheckPassword.trim() && !NickName.trim()) {
-				console.log('정보를 기록해주세요');
-			}
-			if (UserPassword !== CheckPassword) {
-				console.log('비밀번호가 다르다.');
-			}
-			if (UserPassword.length <= 8 && CheckPassword.length <= 8) {
-				console.log(UserPassword.length, CheckPassword.length);
-				console.log('8글자 이상적어줘');
+			console.log(`${process.env.NEXT_PUBLIC_ENDPOINT}`);
+			// console.log(UserId, UserPassword, CheckPassword, NickName);
+			// if (!UserId.trim() && !UserPassword.trim() && !CheckPassword.trim() && !NickName.trim()) {
+			// 	console.log('정보를 기록해주세요');
+			// }
+			// if (UserPassword !== CheckPassword) {
+			// 	console.log('비밀번호가 다르다.');
+			// }
+			// if (UserPassword.length <= 8 && CheckPassword.length <= 8) {
+			// 	console.log(UserPassword.length, CheckPassword.length);
+			// 	console.log('8글자 이상적어줘');
+			// }
+			await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/basic-register`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email: UserId,
+					passwd: UserPassword,
+					passwd2: CheckPassword,
+					name: NickName,
+					gender: Gender,
+					intro: '안녕 나는짱구야',
+				}),
+			});
+			const result = await signIn('credentials', {
+				email: UserId,
+				password: UserPassword,
+				redirect: false, // 리다이렉션을 수동으로 처리하려면 false로 설정합니다.
+			});
+
+			if (result?.error) {
+				// 로그인 실패 처리
+				console.log('로그인 실패:', result.error);
+			} else {
+				// 로그인 성공 처리
+				console.log('로그인 성공:', result);
 			}
 		},
 		[UserId, UserPassword, CheckPassword, NickName],
@@ -84,20 +122,43 @@ export default function step2() {
 						<button className={styles.IdCheckBtn}>중복검사</button>
 					</div>
 				</div>
-				{/*<div className={styles.SignupSubForm}>*/}
-				{/*	<label className={styles.FormTitle}>성별 *</label>*/}
-				{/*	<div className={styles.TextDiv}>*/}
-				{/*		<select className={styles.GenderList}>*/}
-				{/*			<option disabled selected>*/}
-				{/*				성별을 선택해주세요.*/}
-				{/*			</option>*/}
-				{/*			<option>남성</option>*/}
-				{/*			<option>여성</option>*/}
-				{/*			<option>MTF</option>*/}
-				{/*			<option>FTM</option>*/}
-				{/*		</select>*/}
-				{/*	</div>*/}
-				{/*</div>*/}
+				<div className={styles.SignupSubForm}>
+					<label className={styles.FormTitle}>성별 *</label>
+					<div className={styles.TextDiv}>
+						<button onClick={() => setgenderbtn(prev => !prev)} className={styles.GenderForm}>
+							{Gender}
+							{genderbtn ? <Image src={CloseBtn} alt="버튼" /> : <Image src={OpenBtn} alt="버튼" />}
+						</button>
+					</div>
+					<div className={styles.GenderList}>
+						{genderbtn ? (
+							<ul>
+								<li>
+									<button value="남성" type="button" onClick={ClickGender}>
+										남성
+									</button>
+								</li>
+								<li>
+									<button value="여성" type="button" onClick={ClickGender}>
+										여성
+									</button>
+								</li>
+								<li>
+									<button value="MTF" type="button" onClick={ClickGender}>
+										MTF
+									</button>
+								</li>
+								<li>
+									<button value="FTM" type="button" onClick={ClickGender}>
+										FTM
+									</button>
+								</li>
+							</ul>
+						) : (
+							''
+						)}
+					</div>
+				</div>
 				<div className={styles.SignupSubForm}>
 					<label className={styles.FormTitle}>자기소개</label>
 					<div className={styles.TextDiv}>

@@ -1,0 +1,53 @@
+@import '../styles/color.module';
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	margin-top: 12rem;
+	width: 100%;
+}
+
+.mainWrapper {
+	margin-top: 6rem;
+	width: 100%;
+
+	.inner {
+		display: flex;
+		align-items: stretch;
+
+		.leftSection {
+			display: flex;
+			align-items: flex-start;
+			flex-direction: column;
+			flex-grow: 1;
+			flex-shrink: 0;
+			width: 28rem;
+			height: 100%;
+			background: #0ff;
+
+			.leftSectionInner {
+				// position: fixed;
+				// top: 54rem;
+				width: inherit;
+				height: 100%;
+			}
+		}
+
+		.contentSection {
+			display: flex;
+			align-items: flex-start;
+			flex-direction: column;
+			flex-shrink: 1;
+			width: 100rem;
+			height: 200dvh;
+			background: #00f;
+			color: $color-1;
+		}
+	}
+}
+
+.contentLayout {
+	margin-left: 16.5rem;
+	display: flex;
+	flex-direction: column;
+}

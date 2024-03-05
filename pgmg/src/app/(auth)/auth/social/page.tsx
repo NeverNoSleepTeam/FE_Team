@@ -1,6 +1,6 @@
 'use client';
 
-import styles from './social.module.scss';
+import styles from '@/app/(auth)/auth/styles/social.module.scss';
 import Image from 'next/image';
 import Kakaologo from '@/app/common/img/kakao.png';
 import Googlelogo from '@/app/common/img/google.png';

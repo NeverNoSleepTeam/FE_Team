@@ -1,23 +1,8 @@
-import layout from '@/app/styles/_layout.module.scss';
-import style from '@/app/styles/mainLayout.module.scss';
-import Banner from './_component/Banner';
-import Header from './_component/Header';
+import React from 'react';
+import MainLayout from './(route)/layout';
 
-export default function Home() {
-	return (
-		<>
-			<Header />
-			<main>
-				<Banner />
-				<div>
-					<div className={layout.container}>
-						<div className={style.wrap}>
-							<section className={style.leftSection}></section>
-							<section className={style.contentSection}></section>
-						</div>
-					</div>
-				</div>
-			</main>
-		</>
-	);
+type Props = { children: React.ReactNode };
+
+export default function Home({ children }: Props) {
+	return <MainLayout children={children} />;
 }

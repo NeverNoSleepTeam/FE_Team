@@ -1,8 +1,5 @@
 'use client';
 
-import styles from './step2.module.scss';
-import TextareaAutosize from 'react-textarea-autosize';
-import useInput from '@/app/Hooks/useInput';
 import { ChangeEventHandler, useCallback, useState } from 'react';
 import Image from 'next/image';
 import OpenBtn from '@/../public/openbtn.svg';

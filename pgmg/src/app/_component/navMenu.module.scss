@@ -1,0 +1,51 @@
+@import '../styles/color.module';
+
+.navMenu {
+	display: flex;
+	flex-direction: column;
+
+	li {
+		display: block;
+
+		a {
+			display: flex;
+			align-items: center;
+		}
+
+		span {
+			padding: 0 2rem;
+			display: inline-flex;
+			align-items: center;
+			width: 100%;
+			height: 5.1rem;
+			font-size: 1.6rem;
+			font-weight: bold;
+			color: $color-9;
+			background: #fff;
+			border-radius: 3rem;
+			cursor: pointer;
+
+			&:hover {
+				background: $color-1;
+			}
+		}
+
+		.subNavMenu {
+			display: flex;
+			flex-direction: column;
+
+			li {
+				a {
+					span {
+						background: transparent;
+						font-weight: 400;
+
+						&:hover {
+							font-weight: bold;
+						}
+					}
+				}
+			}
+		}
+	}
+}

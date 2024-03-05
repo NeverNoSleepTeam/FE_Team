@@ -2,8 +2,8 @@
 
 import { ChangeEventHandler, useCallback, useState } from 'react';
 import TextareaAutosize from 'react-textarea-autosize';
-import styles from '@/app/(route)/auth/styles/step2.module.scss';
-import useInput from '@/app/Hooks/useInput';
+import styles from '@/app/(auth)/auth/styles/step2.module.scss';
+import useInput from '@/app/hooks/useInput';
 
 export default function step2() {
 	const [UserId, setUserId] = useState('');

@@ -1,8 +1,9 @@
 'use client';
 
-import styles from '@/app/(route)/auth/styles/signup.module.scss';
+import styles from '@/app/(auth)/auth/styles/signup.module.scss';
 import { MouseEventHandler, useState } from 'react';
 import { useRouter } from 'next/navigation';
+
 export default function () {
 	const router = useRouter();
 	const [agreeOne, setAgreeOne] = useState(false);

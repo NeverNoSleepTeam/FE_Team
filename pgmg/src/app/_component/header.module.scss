@@ -1,9 +1,16 @@
+.header {
+	display: flex;
+	align-items: center;
+	position: fixed;
+	width: 100%;
+	height: 12rem;
+	background: #fff;
+}
+
 .headerInner {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	width: 100%;
-	height: 12rem;
 
 	.logo {
 		width: 16rem;

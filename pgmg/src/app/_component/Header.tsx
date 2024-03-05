@@ -9,7 +9,7 @@ import Profile from '@/app/common/img/BlackProfile.png';
 
 export default function Header() {
 	return (
-		<header>
+		<header className={style.header}>
 			<div className={layout.container}>
 				<div className={style.headerInner}>
 					<h1 className={style.logo}>

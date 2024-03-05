@@ -1,11 +1,13 @@
-import layout from '@/app/styles/_layout.module.scss';
-import style from '@/app/_component/header.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
-import BlueLogo from '@/app/common/img/bluelogo.png';
-import BlackCalendar from '@/app/common/img/Blackcalender.png';
-import BlackChat from '@/app/common/img/BlackChat.png';
-import Profile from '@/app/common/img/BlackProfile.png';
+
+import layout from '@/app/styles/_layout.module.scss';
+import style from '@/app/_component/header.module.scss';
+
+import bluelogo from '@/app/common/img/bluelogo.png';
+import blackcalendar from '@/app/common/img/black_calender.png';
+import blackchat from '@/app/common/img/black_chat.png';
+import profile from '@/app/common/img/blac_profile.png';
 
 export default function Header() {
 	return (
@@ -14,23 +16,23 @@ export default function Header() {
 				<div className={style.headerInner}>
 					<h1 className={style.logo}>
 						<Link href={'/'}>
-							<Image src={BlueLogo} alt="logo" priority={true} />
+							<Image src={bluelogo} alt="logo" priority={true} />
 						</Link>
 					</h1>
 					<ul className={style.headerList}>
 						<li>
 							<Link href={'/hot'}>
-								<Image src={BlackCalendar} alt="캘린더" />
+								<Image src={blackcalendar} alt="캘린더" />
 							</Link>
 						</li>
 						<li>
 							<Link href={'/modal'}>
-								<Image src={BlackChat} alt="채팅" />
+								<Image src={blackchat} alt="채팅" />
 							</Link>
 						</li>
 						<li>
 							<Link href={'/photo'}>
-								<Image src={Profile} alt="캘린더" />
+								<Image src={profile} alt="캘린더" />
 							</Link>
 						</li>
 					</ul>

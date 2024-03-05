@@ -7,65 +7,52 @@ import { Accordion, AccordionItem } from '@nextui-org/react';
 
 export default function NavMenu() {
 	return (
-		<>
+		<ul className={style.navMenu}>
 			<li>
 				<Link href={'/'}>
-					<div className={style.navPill}>
-						<span>❤️ 포글모글 추천</span>
-					</div>
+					<span className={style.navText}>❤️ 포글모글 추천</span>
 				</Link>
 			</li>
 			<li>
-				<span>💎 모델</span>
-				<ul>
+				<span className={style.navText}>💎 모델</span>
+				<ul className={style.subNavMenu}>
 					<li>
-						<Link href={'/model/help'}>모델 필요해</Link>
+						<Link href={'/model/help'}>
+							<span>모델 필요해</span>
+						</Link>
 					</li>
 					<li>
-						<Link href={'/model/doit'}>모델 해줄게</Link>
+						<Link href={'/model/doit'}>
+							<span>모델 해줄게</span>
+						</Link>
 					</li>
 				</ul>
 			</li>
 			<li>
-				<span>📸 사진 촬영</span>
-				<ul>
+				<span className={style.navText}>📸 사진 촬영</span>
+				<ul className={style.subNavMenu}>
 					<li>
-						<Link href={'/photol/help'}>사진작가 필요해</Link>
+						<Link href={'/photol/help'}>
+							<span>사진작가 필요해</span>
+						</Link>
 					</li>
 					<li>
-						<Link href={'/photo/doit'}>사진작가 해줄게</Link>
+						<Link href={'/photo/doit'}>
+							<span>사진작가 해줄게</span>
+						</Link>
 					</li>
 				</ul>
 			</li>
 			<li>
 				<Link href={'/photoshop'}>
-					<div className={style.navPill}>
-						<span>🎨 포토샵</span>
-					</div>
+					<span className={style.navText}>🎨 포토샵</span>
 				</Link>
 			</li>
 			<li>
 				<Link href={'/free'}>
-					<div className={style.navPill}>
-						<span>✨ 재능기부</span>
-					</div>
+					<span className={style.navText}>✨ 재능기부</span>
 				</Link>
 			</li>
-			<br />
-			<br />
-			<Link href={'/'}>❤️ 포글모글 추천</Link>
-			<Accordion>
-				<AccordionItem key="2" aria-label="Accordion 2" title="💎 모델">
-					<Link href={'/model/help'}>모델 필요해</Link>
-					<Link href={'/model/doit'}>모델 해줄게</Link>
-				</AccordionItem>
-				<AccordionItem key="3" aria-label="Accordion 3" title="📸 사진 촬영">
-					<Link href={'/photol/help'}>사진작가 필요해</Link>
-					<Link href={'/photo/doit'}>사진작가 해줄게</Link>
-				</AccordionItem>
-			</Accordion>
-			<Link href={'/photoshop'}>🎨 포토샵</Link>
-			<Link href={'/free'}>✨ 재능기부</Link>
-		</>
+		</ul>
 	);
 }

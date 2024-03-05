@@ -3,10 +3,11 @@ import style from '@/app/styles/mainLayout.module.scss';
 import Banner from './_component/Banner';
 import Header from './_component/Header';
 import NavMenu from './_component/NavMenu';
-// import * as Accordion from '@radix-ui/react-accordion';
-// import AccordionDemo from './_component/NavMenu';
+import React from 'react';
 
-export default function Home() {
+type Props = { children: React.ReactNode };
+
+export default function Home({ children }: Props) {
 	return (
 		<>
 			<Header />
@@ -19,14 +20,12 @@ export default function Home() {
 								<section className={style.leftSection}>
 									<div className={style.leftSectionInner}>
 										<nav>
-											<ul>
-												<NavMenu />
-											</ul>
+											<NavMenu />
 										</nav>
 										{/* <AccordionDemo /> */}
 									</div>
 								</section>
-								<section className={style.contentSection}>컨텐츠 섹션</section>
+								<section className={style.contentSection}>{children}컨텐츠 섹션</section>
 							</div>
 						</div>
 					</div>

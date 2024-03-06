@@ -119,6 +119,164 @@ export default function Contents({ children }: Props) {
 						<h2 className={style.title}>
 							포글모글 추천 <span>PICK!</span>
 						</h2>
+						<div className={style.pickCardWrapper}>
+							<div className={style.pickCard}>
+								<Link
+									href={'/'}
+									className={style.pickCardImgwrapper}
+									style={{ backgroundImage: `url(${faker.image.avatar()})` }}
+								>
+									<div className={style.pickCardBg}>{/* <img src={faker.image.avatar()} /> */}</div>
+									<div className={style.pickCardTextWrap}>
+										<div className={style.pickCardText}>
+											<span>서울 · 내국인</span>
+											<span>170cm · 58kg</span>
+											<span>상 30 · 하 26 · 상 240</span>
+										</div>
+										<span className={style.category}>모델</span>
+									</div>
+								</Link>
+								<div className={style.UserInfoWrapper}>
+									<div className={style.UserInfo}>
+										<Link href={'/'}>
+											<Image src={profile} alt="profile" />
+										</Link>
+										<div className={style.UserInfoProfile}>
+											<span>일반회원</span>
+											<Link href={'/'}>대상혁 &gt;</Link>
+										</div>
+									</div>
+									<div className={style.iconButtons}>
+										<button>
+											<Image src={calender} alt="calender" />
+										</button>
+										<button>
+											<Image src={chat} alt="calender" />
+										</button>
+										<button>
+											<Image src={hart} alt="calender" />
+										</button>
+									</div>
+								</div>
+							</div>
+							<div className={style.pickCard}>
+								<Link
+									href={'/'}
+									className={style.pickCardImgwrapper}
+									style={{ backgroundImage: `url(${faker.image.avatar()})` }}
+								>
+									<div className={style.pickCardBg}>{/* <img src={faker.image.avatar()} /> */}</div>
+									<div className={style.pickCardTextWrap}>
+										<div className={style.pickCardText}>
+											<span>서울 · 내국인</span>
+											<span>170cm · 58kg</span>
+											<span>상 30 · 하 26 · 상 240</span>
+										</div>
+										<span className={style.category}>모델</span>
+									</div>
+								</Link>
+								<div className={style.UserInfoWrapper}>
+									<div className={style.UserInfo}>
+										<Link href={'/'}>
+											<Image src={profile} alt="profile" />
+										</Link>
+										<div className={style.UserInfoProfile}>
+											<span>일반회원</span>
+											<Link href={'/'}>대상혁 &gt;</Link>
+										</div>
+									</div>
+									<div className={style.iconButtons}>
+										<button>
+											<Image src={calender} alt="calender" />
+										</button>
+										<button>
+											<Image src={chat} alt="calender" />
+										</button>
+										<button>
+											<Image src={hart} alt="calender" />
+										</button>
+									</div>
+								</div>
+							</div>
+							<div className={style.pickCard}>
+								<Link
+									href={'/'}
+									className={style.pickCardImgwrapper}
+									style={{ backgroundImage: `url(${faker.image.avatar()})` }}
+								>
+									<div className={style.pickCardBg}>{/* <img src={faker.image.avatar()} /> */}</div>
+									<div className={style.pickCardTextWrap}>
+										<div className={style.pickCardText}>
+											<span>서울 · 내국인</span>
+											<span>170cm · 58kg</span>
+											<span>상 30 · 하 26 · 상 240</span>
+										</div>
+										<span className={style.category}>모델</span>
+									</div>
+								</Link>
+								<div className={style.UserInfoWrapper}>
+									<div className={style.UserInfo}>
+										<Link href={'/'}>
+											<Image src={profile} alt="profile" />
+										</Link>
+										<div className={style.UserInfoProfile}>
+											<span>일반회원</span>
+											<Link href={'/'}>대상혁 &gt;</Link>
+										</div>
+									</div>
+									<div className={style.iconButtons}>
+										<button>
+											<Image src={calender} alt="calender" />
+										</button>
+										<button>
+											<Image src={chat} alt="calender" />
+										</button>
+										<button>
+											<Image src={hart} alt="calender" />
+										</button>
+									</div>
+								</div>
+							</div>
+							<div className={style.pickCard}>
+								<Link
+									href={'/'}
+									className={style.pickCardImgwrapper}
+									style={{ backgroundImage: `url(${faker.image.avatar()})` }}
+								>
+									<div className={style.pickCardBg}>{/* <img src={faker.image.avatar()} /> */}</div>
+									<div className={style.pickCardTextWrap}>
+										<div className={style.pickCardText}>
+											<span>서울 · 내국인</span>
+											<span>170cm · 58kg</span>
+											<span>상 30 · 하 26 · 상 240</span>
+										</div>
+										<span className={style.category}>모델</span>
+									</div>
+								</Link>
+								<div className={style.UserInfoWrapper}>
+									<div className={style.UserInfo}>
+										<Link href={'/'} prefetch={false}>
+											<Image src={profile} alt="profile" />
+										</Link>
+										<div className={style.UserInfoProfile}>
+											<span>일반회원</span>
+											<Link href={'/'}>대상혁 &gt;</Link>
+										</div>
+									</div>
+									<div className={style.iconButtons}>
+										<button>
+											<Image src={calender} alt="calender" />
+										</button>
+										<button>
+											<Image src={chat} alt="calender" />
+										</button>
+										<button>
+											<Image src={hart} alt="calender" />
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</>
 			) : (

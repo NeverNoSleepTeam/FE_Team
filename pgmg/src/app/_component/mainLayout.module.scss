@@ -40,7 +40,7 @@
 			flex-direction: column;
 			flex-shrink: 1;
 			width: 100%;
-			height: 200dvh;
+			height: 500dvh;
 			// background: #f0f;
 			color: $color-1;
 		}
@@ -53,6 +53,7 @@
 }
 
 // Main Single Card
+// title
 .title {
 	margin-bottom: 2rem;
 	font-size: 2.4rem;
@@ -64,6 +65,53 @@
 	}
 }
 
+// use Profile
+.UserInfoWrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 1.4rem;
+
+	.UserInfo {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+
+		a {
+			img {
+			}
+		}
+
+		.UserInfoProfile {
+			padding-left: 1.6rem;
+
+			span {
+				display: block;
+				margin-bottom: 0.4rem;
+				color: $color-4;
+				font-size: 1.6rem;
+			}
+			a {
+				display: inline-block;
+				color: $color-9;
+				font-size: 2rem;
+			}
+		}
+	}
+	.iconButtons {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		margin-right: 1rem;
+
+		button {
+			img {
+			}
+		}
+	}
+}
+
+// top Content
 .topContent {
 	display: flex;
 	flex-direction: row;
@@ -139,48 +187,60 @@
 					}
 				}
 			}
+		}
+	}
+}
 
-			.UserInfoWrapper {
+// Pick Content
+.content {
+	.pickCardWrapper {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 2rem;
+
+		.pickCard {
+			padding-bottom: 4rem;
+			width: 31.8%;
+
+			.pickCardImgwrapper {
+				position: relative;
 				display: flex;
-				justify-content: space-between;
 				align-items: center;
-				margin-top: 1.4rem;
+				width: 100%;
+				height: 56rem;
+				background-repeat: no-repeat;
+				background-position: 50% 50%;
+				background-size: cover;
+				border-radius: 2rem;
 
-				.UserInfo {
+				.pickCardBg {
 					display: flex;
-					flex-direction: row;
-					align-items: center;
+					width: 100%;
+					height: inherit;
+					background-image: linear-gradient(
+						to bottom,
+						rgba(0, 0, 0, 0.4),
+						rgba(0, 0, 0, 0) 6%,
+						rgba(0, 0, 0, 0) 69%,
+						#000
+					);
+					border-radius: 2rem;
 
-					a {
-						img {
-						}
-					}
-
-					.UserInfoProfile {
-						padding-left: 1.6rem;
-
-						span {
-							display: block;
-							margin-bottom: 0.4rem;
-							color: $color-4;
-							font-size: 1.6rem;
-						}
-						a {
-							display: inline-block;
-							color: $color-9;
-							font-size: 2rem;
-						}
+					img {
 					}
 				}
-				.iconButtons {
-					display: flex;
-					align-items: center;
-					gap: 2rem;
-					margin-right: 1rem;
 
-					button {
-						img {
+				.pickCardTextWrap {
+					position: absolute;
+					left: 2rem;
+					bottom: 2rem;
+
+					.pickCardText {
+						span {
 						}
+					}
+					.category {
 					}
 				}
 			}

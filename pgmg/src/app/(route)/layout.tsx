@@ -27,7 +27,9 @@ export default function MainLayout({ children }: Props) {
 									</div>
 								</section>
 								<section className={style.contentSection}>
-									<Contents children={children} />
+									<div className={style.contentLayout}>
+										<Contents children={children} />
+									</div>
 								</section>
 							</div>
 						</div>

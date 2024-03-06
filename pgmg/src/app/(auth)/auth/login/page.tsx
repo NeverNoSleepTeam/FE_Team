@@ -1,6 +1,6 @@
 'use client';
+import useInput from '@/app/hooks/useInput';
 import styles from './login.module.scss';
-import useInput from '@/app/Hooks/useInput';
 import { signIn } from 'next-auth/react';
 export default function local() {
 	const [UserEmail, setEmail] = useInput('');

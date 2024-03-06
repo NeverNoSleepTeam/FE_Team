@@ -28,7 +28,6 @@ export const handler = NextAuth({
 					}),
 				});
 				const data = await response.text(); // 응답 데이터를 JSON 형식으로 파싱합니다.
-				console.log(response.text());
 				if (response.ok) {
 					// 로그인 성공 처리
 					console.log('로그인 성공:', data);

@@ -9,36 +9,84 @@ import { signIn } from 'next-auth/react';
 import useInput from '@/app/Hooks/useInput';
 import TextareaAutosize from 'react-textarea-autosize';
 export default function step2() {
-	const [UserId, setUserId] = useState('');
+	const [UserId, setUserId] = useInput('');
 	const [UserPassword, setUserPassword] = useInput('');
 	const [CheckPassword, setCheckPassword] = useInput('');
 	const [NickName, setNickName] = useInput('');
 	const [UserIntro, setUserIntro] = useInput('');
 	const [Gender, setGender] = useState('성별을 선택해주세요');
 	const [genderbtn, setgenderbtn] = useState(false);
-	const onText: ChangeEventHandler<HTMLInputElement> = e => {
-		setUserId(e.target.value);
-		console.log(e.target.value);
-	};
+	const [IdState, setIdState] = useState('');
+	const [NameState, setNameState] = useState('');
+	const [EmailError, setEmailError] = useState(false);
+	const [NameError, setNameError] = useState(false);
 	const ClickGender = useCallback((e: any) => {
 		setGender(e.target.value);
 		setgenderbtn(false);
 	}, []);
+	const OnCheckId = useCallback(
+		async (e: any) => {
+			e.preventDefault();
+			const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/duplicate/email`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email: UserId,
+				}),
+			});
+			setEmailError(true);
+			if (res.ok) {
+				const fetchData = await res.json();
+				if (fetchData.OK) {
+					console.log(fetchData.OK);
+					setIdState(fetchData.OK);
+				} else {
+					setIdState(fetchData.BAD_REQUEST);
+				}
+			}
+		},
+		[UserId],
+	);
+	const OnCheckName = useCallback(
+		async (e: any) => {
+			e.preventDefault();
+			const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/duplicate/name`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email: NickName.trim(),
+				}),
+			});
+			setNameError(true);
+			if (res.ok) {
+				const fetchData = await res.json();
+				if (fetchData.OK) {
+					console.log(fetchData.OK);
+					setNameState(fetchData.OK);
+				} else {
+					setNameState(fetchData.BAD_REQUEST);
+				}
+			}
+		},
+		[NickName],
+	);
 	const onsubmit = useCallback(
 		async (e: any) => {
 			e.preventDefault();
-			console.log(`${process.env.NEXT_PUBLIC_ENDPOINT}`);
-			// console.log(UserId, UserPassword, CheckPassword, NickName);
-			// if (!UserId.trim() && !UserPassword.trim() && !CheckPassword.trim() && !NickName.trim()) {
-			// 	console.log('정보를 기록해주세요');
-			// }
-			// if (UserPassword !== CheckPassword) {
-			// 	console.log('비밀번호가 다르다.');
-			// }
-			// if (UserPassword.length <= 8 && CheckPassword.length <= 8) {
-			// 	console.log(UserPassword.length, CheckPassword.length);
-			// 	console.log('8글자 이상적어줘');
-			// }
+			if (!UserId.trim() && !UserPassword.trim() && !CheckPassword.trim() && !NickName.trim()) {
+				console.log('정보를 기록해주세요');
+			}
+			if (UserPassword !== CheckPassword) {
+				console.log('비밀번호가 다르다.');
+			}
+			if (UserPassword.length <= 8 && CheckPassword.length <= 8) {
+				console.log(UserPassword.length, CheckPassword.length);
+				console.log('8글자 이상적어줘');
+			}
 			await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/basic-register`, {
 				method: 'POST',
 				headers: {
@@ -81,9 +129,11 @@ export default function step2() {
 							className={styles.TextInput}
 							placeholder="이메일을 입력해주세요"
 							value={UserId}
-							onChange={onText}
+							onChange={setUserId}
 						/>
-						<button className={styles.IdCheckBtn}>중복검사</button>
+						<button className={styles.IdCheckBtn} onClick={OnCheckId}>
+							중복검사
+						</button>
 					</div>
 				</div>
 				<div className={styles.SignupSubForm}>
@@ -119,7 +169,9 @@ export default function step2() {
 							value={NickName}
 							onChange={setNickName}
 						/>
-						<button className={styles.IdCheckBtn}>중복검사</button>
+						<button className={styles.IdCheckBtn} onClick={OnCheckName}>
+							중복검사
+						</button>
 					</div>
 				</div>
 				<div className={styles.SignupSubForm}>

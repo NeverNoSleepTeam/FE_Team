@@ -17,12 +17,12 @@ export default function NavMenu() {
 				<span className={style.navText}>💎 모델</span>
 				<ul className={style.subNavMenu}>
 					<li>
-						<Link href={'/model/wantit'}>
+						<Link href={'/modelUser/wantit'}>
 							<span>모델 필요해</span>
 						</Link>
 					</li>
 					<li>
-						<Link href={'/model/doit'}>
+						<Link href={'/modelUser/doit'}>
 							<span>모델 해줄게</span>
 						</Link>
 					</li>

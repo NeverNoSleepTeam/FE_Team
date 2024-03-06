@@ -1,3 +1,4 @@
+@import '../../../styles/color.module';
 .TextInput{
 	border: 0;
 	font-size:1.6rem;
@@ -10,7 +11,7 @@
 	display: flex;
 	flex-direction: column;
 	gap : 2rem;
-	margin:  20rem 0;
+	padding: 24rem 0 20rem;
 }
 .Title{
 	font-size:3.6rem;
@@ -46,6 +47,9 @@
 	padding:2rem;
 	border : solid 0.1rem #efeff4;
 	border-radius: 1.2rem;
+	&::placeholder{
+		color: $color-2;
+	}
 }
 .IdCheckBtn{
 	border: 0;
@@ -53,6 +57,7 @@
 	padding: 0.8rem 1.6rem;
 	background-color: #250996;
 	color : white;
+	cursor : pointer;
 }
 .GenderForm{
 	border:0;

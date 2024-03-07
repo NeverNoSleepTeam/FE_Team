@@ -2,9 +2,14 @@
 import styles from './login.module.scss';
 import useInput from '@/app/Hooks/useInput';
 import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 export default function local() {
 	const [UserEmail, setEmail] = useInput('');
 	const [UserPassword, setPassword] = useInput('');
+	const router = useRouter();
+	const BackBtn = () => {
+		router.back();
+	};
 	const onSubmit = async (e: any) => {
 		e.preventDefault();
 		const result = await signIn('credentials', {
@@ -35,7 +40,9 @@ export default function local() {
 					onChange={setPassword}
 				/>
 				<div className={styles.submit}>
-					<button className={styles.closeBtn}>취소</button>
+					<button className={styles.closeBtn} onClick={BackBtn}>
+						취소
+					</button>
 					<button className={styles.loginBtn} onClick={onSubmit}>
 						로그인
 					</button>

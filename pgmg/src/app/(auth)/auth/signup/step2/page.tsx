@@ -8,6 +8,8 @@ import CloseBtn from '@/../public/closebtn.svg';
 import { signIn } from 'next-auth/react';
 import useInput from '@/app/Hooks/useInput';
 import TextareaAutosize from 'react-textarea-autosize';
+import EmailMemoStore from '@/app/store/memo';
+import { useRouter } from 'next/navigation';
 export default function step2() {
 	const [UserId, setUserId] = useInput('');
 	const [UserPassword, setUserPassword] = useInput('');
@@ -20,6 +22,8 @@ export default function step2() {
 	const [NameState, setNameState] = useState('');
 	const [EmailError, setEmailError] = useState(false);
 	const [NameError, setNameError] = useState(false);
+	const { setMemo } = EmailMemoStore();
+	const router = useRouter();
 	const ClickGender = useCallback((e: any) => {
 		setGender(e.target.value);
 		setgenderbtn(false);
@@ -117,6 +121,13 @@ export default function step2() {
 		},
 		[UserId, UserPassword, CheckPassword, NickName],
 	);
+	const onClickModel = () => {
+		router.replace('modelUser');
+		setMemo('test');
+	};
+	const onClickPhotographer = () => {
+		router.replace('photographer');
+	};
 	return (
 		<div className={styles.Container}>
 			<span className={styles.subTitle}>step2.</span>
@@ -225,8 +236,12 @@ export default function step2() {
 				<button className={styles.NomalSusseceBtn} onClick={onsubmit}>
 					일반회원으로 가입하기
 				</button>
-				<button className={styles.SusseceBtn}>모델회원으로 가입하기</button>
-				<button className={styles.SusseceBtn}>사진작가회원으로 가입하기</button>
+				<button className={styles.SusseceBtn} onClick={onClickModel}>
+					모델회원으로 가입하기
+				</button>
+				<button className={styles.SusseceBtn} onClick={onClickPhotographer}>
+					사진작가회원으로 가입하기
+				</button>
 			</div>
 		</div>
 	);

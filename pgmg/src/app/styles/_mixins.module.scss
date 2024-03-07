@@ -1,9 +1,16 @@
 $mobile: 767px;
 $tablet: 1023px;
-$desktop: 1299px;
+$desktop: 1279px;
+$bigDesktop: 1279px;
+
+@mixin bigDesktop {
+	@media all and (max-width: #{$bigDesktop}) {
+		@content;
+	}
+}
 
 @mixin desktop {
-	@media all and (max-width: #{$desktop}) {
+	@media (max-width: #{$desktop}) {
 		@content;
 	}
 }

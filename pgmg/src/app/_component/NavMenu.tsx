@@ -3,7 +3,6 @@
 import React from 'react';
 import Link from 'next/link';
 import style from '@/app/_component/navMenu.module.scss';
-import { Accordion, AccordionItem } from '@nextui-org/react';
 
 export default function NavMenu() {
 	return (

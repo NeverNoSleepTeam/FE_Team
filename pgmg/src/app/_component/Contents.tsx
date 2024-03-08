@@ -1,11 +1,11 @@
 'use client';
 
-import style from '@/app/_component/mainLayout.module.scss';
+import style from '@/app/_component/contentLayout.module.scss';
 import { usePathname } from 'next/navigation';
 
 import PickCard from '../(route)/_component/PickCard';
 import SingleUserPost from '../(route)/_component/SingleUserPost';
-import Title from '../common/elements/Title';
+import { Title1 } from '../common/elements/Title';
 
 type Props = { children: React.ReactNode };
 
@@ -18,18 +18,18 @@ export default function Contents({ children }: Props) {
 				<>
 					<div className={style.topContent}>
 						<div className={style.singleContentWrapper}>
-							<Title title={'사진작가가'} colorTitle={'모델 구해요!'} />
+							<Title1 title={'사진작가가'} colorTitle={'모델 구해요!'} />
 							<SingleUserPost />
 						</div>
 						<div className={style.singleContentWrapper}>
-							<Title title={'모델이'} colorTitle={'사진작가 구해요!'} />
+							<Title1 title={'모델이'} colorTitle={'사진작가 구해요!'} />
 							<SingleUserPost />
 						</div>
 					</div>
 
 					<div className={style.content}>
-						<Title title={'포글모글 추천'} colorTitle={'PICK!'} />
-						<div className={style.pickCardWrapper}>
+						<Title1 title={'포글모글 추천'} colorTitle={'PICK!'} />
+						<div className={style.contentWrapper}>
 							<PickCard />
 							<PickCard />
 							<PickCard />

@@ -1,6 +1,6 @@
-import { Title1 } from '@/app/common/elements/Title';
 import style from '@/app/_component/contentLayout.module.scss';
 import SingleUserPost from '../../_component/SingleUserPost';
+import { Title1 } from '@/app/common/elements/Title';
 
 export default function PhotoGrapherwantItPage() {
 	return (

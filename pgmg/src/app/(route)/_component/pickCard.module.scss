@@ -1,0 +1,71 @@
+@import '../../styles/_color.module';
+
+.pickCard {
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 4rem;
+	width: 31.7%;
+
+	.pickCardImgwrapper {
+		position: relative;
+		display: flex;
+		align-items: center;
+		width: 100%;
+		height: 56rem;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-size: cover;
+		border-radius: 2rem;
+
+		.pickCardBg {
+			display: flex;
+			width: 100%;
+			height: inherit;
+			background-image: linear-gradient(
+				to bottom,
+				rgba(0, 0, 0, 0.4),
+				rgba(0, 0, 0, 0) 6%,
+				rgba(0, 0, 0, 0) 69%,
+				#000
+			);
+			border-radius: 2rem;
+		}
+
+		.pickCardTextWrap {
+			position: absolute;
+			left: 2rem;
+			bottom: 2rem;
+
+			.pickCardText {
+				display: flex;
+				flex-direction: column;
+
+				span {
+					color: #fff;
+					font-size: 2rem;
+					font-weight: bold;
+
+					&.desc {
+						color: $color-3;
+						font-size: 1.6rem;
+						font-weight: 500;
+					}
+				}
+			}
+		}
+		.category {
+			position: absolute;
+			bottom: 2rem;
+			right: 2rem;
+			width: 4rem;
+			height: 2.5rem;
+			background: rgba(255, 255, 255, 0.1);
+			color: #fff;
+			font-size: 1.4rem;
+			font-weight: bold;
+			text-align: center;
+			line-height: 2.5rem;
+			border-radius: 0.4rem;
+		}
+	}
+}

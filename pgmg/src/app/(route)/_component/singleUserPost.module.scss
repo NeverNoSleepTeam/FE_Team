@@ -1,0 +1,73 @@
+@import '../../styles/color.module';
+
+.singleCardInner {
+	padding: 1rem;
+	width: 100%;
+	border: 0.1rem solid $color-1;
+	border-radius: 2rem;
+
+	&Width {
+		padding: 1rem;
+		width: calc(100% / 2 - 1rem);
+		border: 0.1rem solid $color-1;
+		border-radius: 2rem;
+	}
+}
+
+.singleCardContent {
+	display: flex;
+	flex-direction: row;
+	padding-bottom: 1.4rem;
+	height: 15.5rem;
+
+	.singleImgBox {
+		width: 14rem;
+		height: 14rem;
+
+		img {
+			width: 100%;
+			border-radius: 2rem;
+		}
+	}
+
+	.singleCardPost {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		padding: 1rem;
+
+		.singleCardDate {
+			color: $color-3;
+			font-size: 1.6rem;
+		}
+
+		.singleCardTitle {
+			display: block;
+			color: $color-9;
+			font-size: 2rem;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		.singleCardPrice {
+			font-size: 2rem;
+			font-weight: bold;
+			color: #000;
+		}
+
+		.singleCardCategory {
+			display: flex;
+			flex-direction: row;
+			gap: 1rem;
+
+			span {
+				padding: 0.6rem 1.2rem;
+				font-size: 1.6rem;
+				color: $main-color;
+				border: 0.1rem solid $main-color;
+				border-radius: 2rem;
+			}
+		}
+	}
+}

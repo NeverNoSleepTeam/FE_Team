@@ -1,4 +1,5 @@
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+@import 'styles/color.module';
 
 * {
 	box-sizing: border-box;
@@ -49,4 +50,8 @@ img {
 button {
 	border: none;
 	cursor: pointer;
+}
+
+hr {
+	border: 0.1rem solid $color-1;
 }

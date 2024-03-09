@@ -1,6 +1,6 @@
 'use client';
 
-import { ChangeEventHandler, useCallback, useState } from 'react';
+import { ChangeEventHandler, EventHandler, FormEventHandler, useCallback, useState } from 'react';
 import styles from '../../styles/step2.module.scss';
 import Image from 'next/image';
 import OpenBtn from '@/../public/openbtn.svg';
@@ -8,10 +8,12 @@ import CloseBtn from '@/../public/closebtn.svg';
 import { signIn } from 'next-auth/react';
 import useInput from '@/app/Hooks/useInput';
 import TextareaAutosize from 'react-textarea-autosize';
+import { redirect, useRouter } from 'next/navigation';
 export default function step2() {
+	const router = useRouter();
 	const [UserId, setUserId] = useInput('');
 	const [UserPassword, setUserPassword] = useInput('');
-	const [CheckPassword, setCheckPassword] = useInput('');
+	const [CheckPassword, changeCheckPassword] = useState('');
 	const [NickName, setNickName] = useInput('');
 	const [UserIntro, setUserIntro] = useInput('');
 	const [Gender, setGender] = useState('성별을 선택해주세요');
@@ -19,6 +21,7 @@ export default function step2() {
 	const [IdState, setIdState] = useState('');
 	const [NameState, setNameState] = useState('');
 	const [EmailError, setEmailError] = useState(false);
+	const [PasswordCheck, setPasswordCheck] = useState('');
 	const [NameError, setNameError] = useState(false);
 	const ClickGender = useCallback((e: any) => {
 		setGender(e.target.value);
@@ -27,6 +30,7 @@ export default function step2() {
 	const OnCheckId = useCallback(
 		async (e: any) => {
 			e.preventDefault();
+
 			const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/duplicate/email`, {
 				method: 'POST',
 				headers: {
@@ -40,10 +44,11 @@ export default function step2() {
 			if (res.ok) {
 				const fetchData = await res.json();
 				if (fetchData.OK) {
-					console.log(fetchData.OK);
-					setIdState(fetchData.OK);
+					console.log(fetchData.message);
+					setIdState(fetchData.message);
+					console.log(IdState);
 				} else {
-					setIdState(fetchData.BAD_REQUEST);
+					setIdState(fetchData.message);
 				}
 			}
 		},
@@ -63,20 +68,36 @@ export default function step2() {
 			});
 			setNameError(true);
 			if (res.ok) {
-				const fetchData = await res.json();
-				if (fetchData.OK) {
-					console.log(fetchData.OK);
-					setNameState(fetchData.OK);
+				const fetchData2 = await res.json();
+				if (fetchData2.message) {
+					setNameState(fetchData2.message);
 				} else {
-					setNameState(fetchData.BAD_REQUEST);
+					setNameState(fetchData2.message);
 				}
 			}
 		},
 		[NickName],
 	);
-	const onsubmit = useCallback(
+
+	const setCheckPassword = useCallback(
 		async (e: any) => {
-			e.preventDefault();
+			changeCheckPassword(e.target.value);
+			console.log(1, UserPassword, 2, e.target.value, UserPassword != CheckPassword);
+			if (!UserPassword && !e.target.value) {
+				setPasswordCheck('');
+			}
+			if (UserPassword.trim() == e.target.value.trim()) {
+				setPasswordCheck('비밀번호가 일치합니다.');
+			}
+			if (UserPassword.trim() != e.target.value.trim()) {
+				setPasswordCheck('비밀번호 다시 입력해주세요.');
+			}
+		},
+		[UserPassword, CheckPassword],
+	);
+
+	const onsubmit = useCallback(
+		async (e: any, type: string) => {
 			if (!UserId.trim() && !UserPassword.trim() && !CheckPassword.trim() && !NickName.trim()) {
 				console.log('정보를 기록해주세요');
 			}
@@ -87,7 +108,7 @@ export default function step2() {
 				console.log(UserPassword.length, CheckPassword.length);
 				console.log('8글자 이상적어줘');
 			}
-			await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/basic-register`, {
+			const result = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/basic-register`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -97,23 +118,34 @@ export default function step2() {
 					passwd: UserPassword,
 					passwd2: CheckPassword,
 					name: NickName,
-					gender: Gender,
+					gender: '남성',
 					intro: '안녕 나는짱구야',
 				}),
 			});
-			const result = await signIn('credentials', {
-				email: UserId,
-				password: UserPassword,
-				redirect: false, // 리다이렉션을 수동으로 처리하려면 false로 설정합니다.
-			});
-
-			if (result?.error) {
-				// 로그인 실패 처리
-				console.log('로그인 실패:', result.error);
-			} else {
-				// 로그인 성공 처리
-				console.log('로그인 성공:', result);
+			if (result.ok) {
+				if (type == 'basic') {
+					router.replace('/auth/singup/stepend');
+				}
+				if (type == 'model') {
+					router.replace('/auth/signup/modelUser');
+				}
+				if (type == 'photographer') {
+					router.replace('/auth/signup/photographer');
+				}
 			}
+			// const result = await signIn('credentials', {
+			// 	email: UserId,
+			// 	password: UserPassword,
+			// 	redirect: false, // 리다이렉션을 수동으로 처리하려면 false로 설정합니다.
+			// });
+			//
+			// if (result?.error) {
+			// 	// 로그인 실패 처리
+			// 	console.log('로그인 실패:', result.error);
+			// } else {
+			// 	// 로그인 성공 처리
+			// 	console.log('로그인 성공:', result);
+			// }
 		},
 		[UserId, UserPassword, CheckPassword, NickName],
 	);
@@ -124,16 +156,19 @@ export default function step2() {
 			<div className={styles.SignUpForm}>
 				<div className={styles.SignupSubForm}>
 					<label className={styles.FormTitle}>이메일 *</label>
-					<div className={styles.TextDiv}>
-						<input
-							className={styles.TextInput}
-							placeholder="이메일을 입력해주세요"
-							value={UserId}
-							onChange={setUserId}
-						/>
-						<button className={styles.IdCheckBtn} onClick={OnCheckId}>
-							중복검사
-						</button>
+					<div>
+						<div className={styles.TextDiv}>
+							<input
+								className={styles.TextInput}
+								placeholder="이메일을 입력해주세요"
+								value={UserId}
+								onChange={setUserId}
+							/>
+							<button className={styles.IdCheckBtn} onClick={OnCheckId}>
+								중복검사
+							</button>
+						</div>
+						{EmailError ? <span className={styles.ErrorMessage}>{NameState}</span> : ''}
 					</div>
 				</div>
 				<div className={styles.SignupSubForm}>
@@ -150,28 +185,48 @@ export default function step2() {
 				</div>
 				<div className={styles.SignupSubForm}>
 					<label className={styles.FormTitle}>비밀번호 확인</label>
-					<div className={styles.TextDiv}>
-						<input
-							className={styles.TextInput}
-							type="password"
-							placeholder="비밀번호를 한번 더 입력해 주세요."
-							value={CheckPassword}
-							onChange={setCheckPassword}
-						/>
+					<div>
+						<div className={styles.TextDiv}>
+							<input
+								className={styles.TextInput}
+								type="password"
+								placeholder="비밀번호를 한번 더 입력해 주세요."
+								value={CheckPassword}
+								onChange={setCheckPassword}
+							/>
+						</div>
+						{PasswordCheck == '' ? (
+							''
+						) : PasswordCheck == '비밀번호가 일치합니다.' ? (
+							<span className={styles.SuccessMessage}>비밀번호가 일치합니다.</span>
+						) : (
+							<span className={styles.ErrorMessage}>비밀번호 다시 입력해주세요.</span>
+						)}
 					</div>
 				</div>
 				<div className={styles.SignupSubForm}>
 					<label className={styles.FormTitle}>닉네임 *</label>
-					<div className={styles.TextDiv}>
-						<input
-							className={styles.TextInput}
-							placeholder="닉네임을 입력해주세요"
-							value={NickName}
-							onChange={setNickName}
-						/>
-						<button className={styles.IdCheckBtn} onClick={OnCheckName}>
-							중복검사
-						</button>
+					<div>
+						<div className={styles.TextDiv}>
+							<input
+								className={styles.TextInput}
+								placeholder="닉네임을 입력해주세요"
+								value={NickName}
+								onChange={setNickName}
+							/>
+							<button className={styles.IdCheckBtn} onClick={OnCheckName}>
+								중복검사
+							</button>
+						</div>
+						{NameError ? (
+							NameState === '사용가능한 닉네임입니다.' ? (
+								<span className={styles.SuccessMessage}>{NameState}</span>
+							) : (
+								<span className={styles.ErrorMessage}>{NameState}</span>
+							)
+						) : (
+							''
+						)}
 					</div>
 				</div>
 				<div className={styles.SignupSubForm}>
@@ -222,11 +277,15 @@ export default function step2() {
 						/>
 					</div>
 				</div>
-				<button className={styles.NomalSusseceBtn} onClick={onsubmit}>
+				<button className={styles.NomalSusseceBtn} onClick={() => onsubmit('', 'basic')}>
 					일반회원으로 가입하기
 				</button>
-				<button className={styles.SusseceBtn}>모델회원으로 가입하기</button>
-				<button className={styles.SusseceBtn}>사진작가회원으로 가입하기</button>
+				<button className={styles.SusseceBtn} onClick={() => onsubmit('', 'model')}>
+					모델회원으로 가입하기
+				</button>
+				<button className={styles.SusseceBtn} onClick={() => onsubmit('', 'photographer')}>
+					사진작가회원으로 가입하기
+				</button>
 			</div>
 		</div>
 	);

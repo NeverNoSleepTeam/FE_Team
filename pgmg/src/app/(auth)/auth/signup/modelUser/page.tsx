@@ -5,13 +5,21 @@ import CloseBtn from '../../../../../../public/closebtn.svg';
 import OpenBtn from '../../../../../../public/openbtn.svg';
 import TextareaAutosize from 'react-textarea-autosize';
 import { useCallback, useState } from 'react';
+import EmailMemoStore from '@/app/store/memo';
+import useInput from '@/app/Hooks/useInput';
 
 export default function modelUser() {
 	const [location, setlocation] = useState('지역을 선택해 주세요.');
 	const [global, setglobal] = useState('국적을 선택해 주세요.');
 	const [GlobalOn, setGlobalChange] = useState(false);
 	const [LocalOn, setLocalChange] = useState(false);
-	const city = [
+	const [height, setheight] = useInput('');
+	const [weight, setweight] = useInput('');
+	const [top, settop] = useInput('');
+	const [bottom, setbottom] = useInput('');
+	const [shoes, setshose] = useInput('');
+
+	const locations = [
 		'서울',
 		'인천',
 		'경기',
@@ -29,6 +37,8 @@ export default function modelUser() {
 		'전남',
 		'기타',
 	];
+	const { memo } = EmailMemoStore();
+	console.log(memo);
 	const GobalChoice = useCallback(e => {
 		setglobal(e.target.value);
 		setGlobalChange(false);
@@ -37,6 +47,25 @@ export default function modelUser() {
 		setlocation(e.target.value);
 		setLocalChange(false);
 	}, []);
+	const onsubmit = async (e: any) => {
+		e.preventDefault();
+		await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/model-register`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				email: memo,
+				height: height,
+				weight: weight,
+				top: top,
+				bottom: bottom,
+				shoes: shoes,
+				nationality: global,
+				city: location,
+			}),
+		});
+	};
 	return (
 		<div className={styles.Container}>
 			<span className={styles.subTitle}>step3.</span>
@@ -45,13 +74,24 @@ export default function modelUser() {
 				<div className={styles.SignupSubForm}>
 					<label className={styles.FormTitle}>키*</label>
 					<div className={styles.TextDiv}>
-						<input className={styles.TextInput} placeholder="키를 입력해주세요" />
+						<input
+							className={styles.TextInput}
+							placeholder="키를 입력해주세요"
+							value={height}
+							onChange={setheight}
+						/>
 					</div>
 				</div>
 				<div className={styles.SignupSubForm}>
 					<label className={styles.FormTitle}>몸무게*</label>
 					<div className={styles.TextDiv}>
-						<input className={styles.TextInput} type="text" placeholder="몸무게를 입력해주세요." />
+						<input
+							className={styles.TextInput}
+							type="text"
+							placeholder="몸무게를 입력해주세요."
+							value={weight}
+							onChange={setweight}
+						/>
 					</div>
 				</div>
 				<div className={styles.SignupSubForm}>
@@ -61,6 +101,8 @@ export default function modelUser() {
 							className={styles.TextInput}
 							type="text"
 							placeholder="상의사이즈를 입력해주세요."
+							value={top}
+							onChange={settop}
 						/>
 					</div>
 				</div>
@@ -71,6 +113,8 @@ export default function modelUser() {
 							className={styles.TextInput}
 							type="text"
 							placeholder="하의사이즈를 입력해주세요."
+							value={bottom}
+							onChange={setbottom}
 						/>
 					</div>
 					<div className={styles.SignupSubForm}>
@@ -80,14 +124,10 @@ export default function modelUser() {
 								className={styles.TextInput}
 								type="text"
 								placeholder="신발 사이즈를 입력해주세요."
+								value={shoes}
+								onChange={setshose}
 							/>
 						</div>
-					</div>
-				</div>
-				<div className={styles.SignupSubForm}>
-					<label className={styles.FormTitle}>닉네임 *</label>
-					<div className={styles.TextDiv}>
-						<input className={styles.TextInput} placeholder="닉네임을 입력해주세요" />
 					</div>
 				</div>
 				<div className={styles.SignupSubForm}>
@@ -128,7 +168,7 @@ export default function modelUser() {
 					{LocalOn ? (
 						<div className={styles.LocalList}>
 							<ul>
-								{city.map(LocalCity => {
+								{locations.map(LocalCity => {
 									return (
 										<li>
 											<button type="button" value={LocalCity} onClick={LocationChoice}>
@@ -143,7 +183,9 @@ export default function modelUser() {
 						''
 					)}
 				</div>
-				<button className={styles.NomalSusseceBtn}>일반회원으로 가입하기</button>
+				<button className={styles.NomalSusseceBtn} onClick={onsubmit}>
+					일반회원으로 가입하기
+				</button>
 			</div>
 		</div>
 	);

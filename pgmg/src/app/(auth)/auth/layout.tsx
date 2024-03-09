@@ -7,9 +7,9 @@ import layout from '@/app/styles/_layout.module.scss';
 import style from '@/app/(auth)/auth/styles/authLayout.module.scss';
 import Header from '@/app/_component/Header';
 
-type Props = { children: ReactNode };
+type Props = { children: ReactNode; modal: ReactNode };
 
-export default function Layout({ children }: Props) {
+export default function Layout({ children, modal }: Props) {
 	const { data: session } = useSession();
 	if (session) {
 		redirect('/');
@@ -19,7 +19,10 @@ export default function Layout({ children }: Props) {
 			<Header />
 			<main>
 				<div className={layout.container}>
-					<div className={style.authLayout}>{children}</div>
+					<div className={style.authLayout}>
+						{children}
+						{modal}
+					</div>
 				</div>
 			</main>
 		</>

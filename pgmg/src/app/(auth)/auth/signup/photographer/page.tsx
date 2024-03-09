@@ -5,6 +5,7 @@ import Image from 'next/image';
 import CloseBtn from '../../../../../../public/closebtn.svg';
 import OpenBtn from '../../../../../../public/openbtn.svg';
 import Upload from '@/app/common/img/upload.svg';
+import EmailMemoStore from '@/app/store/memo';
 export default function photographer() {
 	const [Business, setBusiness] = useState('출장 여부 선택해 주세요.');
 	const [BusinessState, setBusinessState] = useState(false);
@@ -13,6 +14,7 @@ export default function photographer() {
 	const [Production, setProduction] = useState('연출 여부 선택해 주세요.');
 	const [ProductionState, setProductionState] = useState(false);
 	const imageInput = useRef<HTMLInputElement>(null);
+	const { memo } = EmailMemoStore();
 	const onChangeBusiness = useCallback((e: any) => {
 		setBusiness(e.target.value);
 		setBusinessState(false);
@@ -27,6 +29,22 @@ export default function photographer() {
 	}, []);
 	const HandleRef = () => {
 		imageInput.current.click();
+	};
+	const onsubmit = async (e: any) => {
+		e.preventDefault();
+		await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/prophoto-register`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+				email: 'test123@naver.com',
+				businessTrip: '가능',
+				correction: '가능',
+				production: '가능',
+				portgfolioURL: 'https',
+			}),
+		});
 	};
 	return (
 		<div className={styles.Container}>
@@ -166,7 +184,9 @@ export default function photographer() {
 						<span className={styles.fileInfo}>* 파일업로드 용량제한 500MB, (PDF파일만 가능)</span>
 					</div>
 				</div>
-				<button className={styles.NomalSusseceBtn}>사진작가회원으로 가입 완료하기</button>
+				<button className={styles.NomalSusseceBtn} onClick={onsubmit}>
+					사진작가회원으로 가입 완료하기
+				</button>
 			</div>
 		</div>
 	);

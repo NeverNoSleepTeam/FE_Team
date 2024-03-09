@@ -1,6 +1,6 @@
 'use client';
-import useInput from '@/app/hooks/useInput';
-import styles from './login.module.scss';
+import styles from '../styles/login.module.scss';
+import useInput from '@/app/Hooks/useInput';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 export default function local() {

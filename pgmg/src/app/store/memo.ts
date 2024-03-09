@@ -1,8 +1,16 @@
-import create from 'zustand';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-const EmailMemoStore = create(set => ({
-	memo: '',
-	setMemo: (text: string) => set({ memo: text }),
-}));
-
+type UserEmailStore = { memo: string; setMemo: (text: string) => void };
+const EmailMemoStore = create(
+	persist<UserEmailStore>(
+		set => ({
+			memo: '',
+			setMemo: (text: string) => set({ memo: text }),
+		}),
+		{
+			name: 'userIdStorage',
+		},
+	),
+);
 export default EmailMemoStore;

@@ -1,0 +1,26 @@
+@import '../styles/color.module';
+
+// top Content
+.topContent {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	gap: 1.6rem;
+	margin-bottom: 6rem;
+
+	.singleContentWrapper {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+// Post(Pick) Content
+.content {
+	.contentWrapper {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 2rem;
+	}
+}

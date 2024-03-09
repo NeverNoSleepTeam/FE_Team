@@ -19,7 +19,6 @@ import { usePathname } from 'next/navigation';
 export default function Header() {
 	const router = usePathname();
 	const blueH = router.includes('/auth');
-	console.log(router);
 
 	return (
 		<header className={blueH ? style.headerblue : style.header}>

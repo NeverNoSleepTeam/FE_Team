@@ -6,6 +6,7 @@ import Header from '@/app/_component/Header';
 import Banner from '@/app/_component/Banner';
 import NavMenu from '@/app/_component/NavMenu';
 import Contents from '@/app/_component/Contents';
+import WritingButton from './_component/WritingButton';
 
 type Props = { children: ReactNode };
 
@@ -24,10 +25,13 @@ export default function MainLayout({ children }: Props) {
 										<nav>
 											<NavMenu />
 										</nav>
+										<WritingButton />
 									</div>
 								</section>
 								<section className={style.contentSection}>
-									<Contents children={children} />
+									<div className={style.contentLayout}>
+										<Contents children={children} />
+									</div>
 								</section>
 							</div>
 						</div>

@@ -9,6 +9,7 @@ import { signIn } from 'next-auth/react';
 import useInput from '@/app/Hooks/useInput';
 import TextareaAutosize from 'react-textarea-autosize';
 import { redirect, useRouter } from 'next/navigation';
+import EmailMemoStore from '@/app/store/memo';
 export default function step2() {
 	const router = useRouter();
 	const [UserId, setUserId] = useInput('');
@@ -20,17 +21,19 @@ export default function step2() {
 	const [genderbtn, setgenderbtn] = useState(false);
 	const [IdState, setIdState] = useState('');
 	const [NameState, setNameState] = useState('');
-	const [EmailError, setEmailError] = useState(false);
 	const [PasswordCheck, setPasswordCheck] = useState('');
 	const [NameError, setNameError] = useState(false);
-	const ClickGender = useCallback((e: any) => {
-		setGender(e.target.value);
-		setgenderbtn(false);
-	}, []);
+	const { setMemo } = EmailMemoStore();
+	const ClickGender = useCallback(
+		(e: any) => {
+			setGender(e.target.value);
+			setgenderbtn(false);
+		},
+		[Gender],
+	);
 	const OnCheckId = useCallback(
 		async (e: any) => {
 			e.preventDefault();
-
 			const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/duplicate/email`, {
 				method: 'POST',
 				headers: {
@@ -40,13 +43,10 @@ export default function step2() {
 					email: UserId,
 				}),
 			});
-			setEmailError(true);
 			if (res.ok) {
 				const fetchData = await res.json();
 				if (fetchData.OK) {
-					console.log(fetchData.message);
 					setIdState(fetchData.message);
-					console.log(IdState);
 				} else {
 					setIdState(fetchData.message);
 				}
@@ -82,7 +82,6 @@ export default function step2() {
 	const setCheckPassword = useCallback(
 		async (e: any) => {
 			changeCheckPassword(e.target.value);
-			console.log(1, UserPassword, 2, e.target.value, UserPassword != CheckPassword);
 			if (!UserPassword && !e.target.value) {
 				setPasswordCheck('');
 			}
@@ -99,14 +98,14 @@ export default function step2() {
 	const onsubmit = useCallback(
 		async (e: any, type: string) => {
 			if (!UserId.trim() && !UserPassword.trim() && !CheckPassword.trim() && !NickName.trim()) {
-				console.log('정보를 기록해주세요');
+				return null;
 			}
 			if (UserPassword !== CheckPassword) {
-				console.log('비밀번호가 다르다.');
+				return null;
 			}
 			if (UserPassword.length <= 8 && CheckPassword.length <= 8) {
-				console.log(UserPassword.length, CheckPassword.length);
 				console.log('8글자 이상적어줘');
+				return null;
 			}
 			const result = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/basic-register`, {
 				method: 'POST',
@@ -118,15 +117,17 @@ export default function step2() {
 					passwd: UserPassword,
 					passwd2: CheckPassword,
 					name: NickName,
-					gender: '남성',
-					intro: '안녕 나는짱구야',
+					gender: Gender,
+					intro: UserIntro,
 				}),
 			});
 			if (result.ok) {
 				if (type == 'basic') {
+					setMemo(UserId);
 					router.replace('/auth/singup/stepend');
 				}
 				if (type == 'model') {
+					setMemo(UserId);
 					router.replace('/auth/signup/modelUser');
 				}
 				if (type == 'photographer') {
@@ -168,7 +169,13 @@ export default function step2() {
 								중복검사
 							</button>
 						</div>
-						{EmailError ? <span className={styles.ErrorMessage}>{NameState}</span> : ''}
+						{IdState == '' ? (
+							''
+						) : IdState == '사용가능한 이메일입니다.' ? (
+							<span className={styles.SuccessMessage}>사용가능한 이메일입니다</span>
+						) : (
+							<span className={styles.ErrorMessage}>이미 존재하는 이메일입니다.</span>
+						)}
 					</div>
 				</div>
 				<div className={styles.SignupSubForm}>

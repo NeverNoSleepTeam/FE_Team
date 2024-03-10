@@ -15,21 +15,24 @@
 		align-items: stretch;
 
 		.leftSection {
-			display: flex;
-			align-items: flex-start;
-			flex-direction: column;
-			flex-grow: 1;
-			flex-shrink: 0;
-			width: 22rem;
+			width: 26rem;
 			// width: 16%;
 			height: 100%;
-			// background: #0ff;
 
 			.leftSectionInner {
-				// position: fixed;
-				// top: 54rem;
-				width: 100%;
+				display: flex;
+				align-items: flex-start;
+				flex-direction: column;
+				flex-grow: 1;
+				flex-shrink: 0;
+				width: 26rem;
+				// width: 16%;
 				height: 100%;
+				// background: #0ff;
+
+				&Fixed {
+					display: none;
+				}
 			}
 		}
 
@@ -44,7 +47,7 @@
 			color: $color-1;
 
 			.contentLayout {
-				padding: 0 0 0 4%;
+				padding: 0 0 0 6%;
 				width: 100%;
 			}
 		}

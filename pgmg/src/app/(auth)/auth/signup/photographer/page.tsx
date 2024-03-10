@@ -6,6 +6,7 @@ import CloseBtn from '../../../../../../public/closebtn.svg';
 import OpenBtn from '../../../../../../public/openbtn.svg';
 import Upload from '@/app/common/img/upload.svg';
 import EmailMemoStore from '@/app/store/memo';
+import useInput from '@/app/Hooks/useInput';
 export default function photographer() {
 	const [Business, setBusiness] = useState('출장 여부 선택해 주세요.');
 	const [BusinessState, setBusinessState] = useState(false);
@@ -13,6 +14,7 @@ export default function photographer() {
 	const [CorrectionState, setCorrectionState] = useState(false);
 	const [Production, setProduction] = useState('연출 여부 선택해 주세요.');
 	const [ProductionState, setProductionState] = useState(false);
+	const [portfolioURL, setPortfolioURL] = useInput('');
 	const imageInput = useRef<HTMLInputElement>(null);
 	const { memo } = EmailMemoStore();
 	const onChangeBusiness = useCallback((e: any) => {
@@ -30,22 +32,27 @@ export default function photographer() {
 	const HandleRef = () => {
 		imageInput.current.click();
 	};
-	const onsubmit = async (e: any) => {
-		e.preventDefault();
-		await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/prophoto-register`, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-				email: 'test123@naver.com',
-				businessTrip: '가능',
-				correction: '가능',
-				production: '가능',
-				portgfolioURL: 'https',
-			}),
-		});
-	};
+	const onsubmit = useCallback(
+		async (e: any) => {
+			e.preventDefault();
+			await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/prophoto-register`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					RequestBody: {
+						email: memo,
+						businessTrip: Business,
+						correction: Correction,
+						production: Production,
+						portgfolioURL: portfolioURL,
+					},
+				}),
+			});
+		},
+		[BusinessState, Correction, Production, memo],
+	);
 	return (
 		<div className={styles.Container}>
 			<span className={styles.subTitle}>step2.</span>
@@ -171,7 +178,12 @@ export default function photographer() {
 				<div className={styles.SignupSubForm}>
 					<label className={styles.FormTitle}>포토폴리오*</label>
 					<div className={styles.TextDiv}>
-						<input className={styles.TextInput} placeholder="URL을 입력해주세요." />
+						<input
+							className={styles.TextInput}
+							placeholder="URL을 입력해주세요."
+							value={portfolioURL}
+							onChange={setPortfolioURL}
+						/>
 					</div>
 					<div>
 						<div className={styles.TextDiv}>

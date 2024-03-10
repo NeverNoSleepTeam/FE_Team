@@ -139,7 +139,7 @@ export default function modelUser() {
 						</button>
 					</div>
 					{GlobalOn ? (
-						<div className={styles.LocalList}>
+						<div className={styles.GobalList}>
 							<ul>
 								<li>
 									<button type="button" value="내국인" onClick={GobalChoice}>
@@ -184,7 +184,7 @@ export default function modelUser() {
 					)}
 				</div>
 				<button className={styles.NomalSusseceBtn} onClick={onsubmit}>
-					일반회원으로 가입하기
+					모델회원으로 가입 완료하기
 				</button>
 			</div>
 		</div>

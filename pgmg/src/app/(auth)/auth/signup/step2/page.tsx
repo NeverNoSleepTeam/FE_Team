@@ -5,7 +5,6 @@ import styles from '../../styles/step2.module.scss';
 import Image from 'next/image';
 import OpenBtn from '@/../public/openbtn.svg';
 import CloseBtn from '@/../public/closebtn.svg';
-import { signIn } from 'next-auth/react';
 import useInput from '@/app/Hooks/useInput';
 import TextareaAutosize from 'react-textarea-autosize';
 import { redirect, useRouter } from 'next/navigation';
@@ -24,13 +23,10 @@ export default function step2() {
 	const [PasswordCheck, setPasswordCheck] = useState('');
 	const [NameError, setNameError] = useState(false);
 	const { setMemo } = EmailMemoStore();
-	const ClickGender = useCallback(
-		(e: any) => {
-			setGender(e.target.value);
-			setgenderbtn(false);
-		},
-		[Gender],
-	);
+	const ClickGender = useCallback(async (e: any) => {
+		await setGender(e.target.value);
+		setgenderbtn(false);
+	}, []);
 	const OnCheckId = useCallback(
 		async (e: any) => {
 			e.preventDefault();
@@ -148,7 +144,7 @@ export default function step2() {
 			// 	console.log('로그인 성공:', result);
 			// }
 		},
-		[UserId, UserPassword, CheckPassword, NickName],
+		[UserId, UserPassword, CheckPassword, NickName, Gender, UserIntro],
 	);
 	return (
 		<div className={styles.Container}>

@@ -26,6 +26,9 @@ export default function local() {
 			console.log('로그인 성공:', result);
 		}
 	};
+	const backBtn = () => {
+		router.back();
+	};
 	return (
 		<div className={styles.container}>
 			<h1 className={styles.title}>이메일로 로그인하기</h1>

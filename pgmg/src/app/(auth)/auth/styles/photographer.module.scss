@@ -2,7 +2,7 @@
 .Container{
   display: flex;
   flex-direction: column;
-  gap : 2rem;
+  gap : 3rem;
   padding: 24rem 0 20rem;
   .Title{
     font-size:3.6rem;
@@ -96,5 +96,6 @@
     color: white;
     padding: 1.6rem 0;
     cursor:pointer;
+    margin-top: 4rem;
   }
 }

@@ -21,7 +21,7 @@ export default function NavMenu() {
 						</Link>
 					</li>
 					<li>
-						<Link href={'/model/doit'}>
+						<Link href={'/modelmember/doit'}>
 							<span>모델 해줄게</span>
 						</Link>
 					</li>

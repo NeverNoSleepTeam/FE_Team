@@ -25,3 +25,11 @@ export const Title3 = ({ title, colorTitle, title2 }: Props) => {
 		</h3>
 	);
 };
+
+export const Title4 = ({ title, colorTitle }: Props) => {
+	return (
+		<h4 className={style.subTitle}>
+			<span>{colorTitle}</span> {title}
+		</h4>
+	);
+};

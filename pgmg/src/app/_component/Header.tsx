@@ -42,8 +42,36 @@ export default function Header() {
 						</li>
 						<li>
 							<Link href={'/photo'}>
-								<Image src={profile} alt="캘린더" />
+								<Image src={profile} alt="프로필" />
 							</Link>
+							<div className={style.myArea}>
+								<div className={style.btnWrap}>
+									<Link href={'/auth/login'}>로그인</Link>
+									<Link href={'/auth/signup'}>회원가입</Link>
+								</div>
+								<ul className={style.myList}>
+									<li>
+										<Link href={'/mypage'}>
+											<span>마이페이지</span>
+										</Link>
+									</li>
+									<li>
+										<Link href={'/calender'}>
+											<span>캘린더</span>
+										</Link>
+									</li>
+									<li>
+										<Link href={'/chat'}>
+											<span>채팅</span>
+										</Link>
+									</li>
+									<li>
+										<Link href={'/mypage/interest_list'}>
+											<span>관심리스트</span>
+										</Link>
+									</li>
+								</ul>
+							</div>
 						</li>
 					</ul>
 				</div>

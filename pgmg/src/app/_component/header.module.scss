@@ -24,6 +24,7 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	position: relative;
 
 	.logo {
 		width: 16rem;
@@ -38,5 +39,57 @@
 		display: flex;
 		align-items: center;
 		gap: 2rem;
+
+		.myArea {
+			position: absolute;
+			top: 7.4rem;
+			right: 0;
+			display: block;
+			background: #fff;
+			border-radius: 2.4rem;
+
+			.btnWrap {
+				display: flex;
+				gap: 0.8rem;
+				padding: 2rem 2.4rem 1.8rem;
+
+				a {
+					flex: 1;
+					padding: 0.8rem 0;
+					min-width: 10rem;
+					font-size: 1.6rem;
+					font-weight: bold;
+					text-align: center;
+					line-height: 2.6rem;
+					border-radius: 2.4rem;
+
+					&:first-child {
+						background: $main-color;
+						color: #fff;
+					}
+					&:last-child {
+						background: $color-1;
+						color: $color-5;
+					}
+				}
+			}
+
+			.myList {
+				display: flex;
+				flex-direction: column;
+				gap: 2.4rem;
+				padding: 2rem 0;
+				border-top: 0.1rem solid $color-1;
+
+				li {
+					a {
+						padding: 0rem 2.4rem;
+						color: $color-10;
+						font-size: 1.6rem;
+						font-weight: 400;
+					}
+				}
+			}
+		}
 	}
 }

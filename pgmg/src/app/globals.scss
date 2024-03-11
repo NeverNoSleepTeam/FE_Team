@@ -51,8 +51,16 @@ img {
 button {
 	border: none;
 	cursor: pointer;
+	background-color: transparent;
 }
 
 hr {
 	border: 0.1rem solid $color-1;
+}
+
+h3 {
+	font-size: 2.4rem;
+}
+h4 {
+	font-size: 1.6rem;
 }

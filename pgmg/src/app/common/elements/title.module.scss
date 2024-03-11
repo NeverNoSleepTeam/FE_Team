@@ -2,7 +2,6 @@
 
 .title {
 	margin-bottom: 2rem;
-	font-size: 2.4rem;
 	font-weight: bold;
 	color: #000;
 
@@ -12,12 +11,21 @@
 }
 
 .title2 {
-	margin-bottom: 2rem;
 	font-size: 2.4rem;
 	font-weight: bold;
 	color: $main-color;
 
 	span {
 		color: #000;
+	}
+}
+
+.subTitle {
+	margin-bottom: 2rem;
+	font-weight: bold;
+	color: #000;
+
+	span {
+		color: $main-color;
 	}
 }

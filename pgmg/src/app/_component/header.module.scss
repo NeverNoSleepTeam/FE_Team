@@ -44,9 +44,12 @@
 			position: absolute;
 			top: 7.4rem;
 			right: 0;
-			display: block;
 			background: #fff;
 			border-radius: 2.4rem;
+
+			&Hidden {
+				display: none;
+			}
 
 			.btnWrap {
 				display: flex;

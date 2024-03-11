@@ -15,10 +15,17 @@ import calendar_w from '@/app/common/img/calender_w.png';
 import chat_w from '@/app/common/img/chat_w.png';
 
 import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 export default function Header() {
 	const router = usePathname();
 	const blueH = router.includes('/auth');
+	const [visible, setVisible] = useState(false);
+
+	const visibleHandler = () => {
+		setVisible(!visible);
+		console.log('click', visible);
+	};
 
 	return (
 		<header className={blueH ? style.headerblue : style.header}>
@@ -41,10 +48,10 @@ export default function Header() {
 							</Link>
 						</li>
 						<li>
-							<Link href={'/photo'}>
+							<button onClick={visibleHandler}>
 								<Image src={profile} alt="프로필" />
-							</Link>
-							<div className={style.myArea}>
+							</button>
+							<div className={visible ? style.myArea : style.myAreaHidden}>
 								<div className={style.btnWrap}>
 									<Link href={'/auth/login'}>로그인</Link>
 									<Link href={'/auth/signup'}>회원가입</Link>

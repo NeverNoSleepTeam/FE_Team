@@ -1,4 +1,4 @@
-import ErrorModal from '@/app/_component/ErrorModal';
+import ErrorModal from '@/app/common/elements/ErrorModal';
 
 export default function error() {
 	return <ErrorModal />;

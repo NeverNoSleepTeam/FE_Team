@@ -42,7 +42,7 @@ export default function photographer() {
 				},
 				body: JSON.stringify({
 					RequestBody: {
-						email: memo,
+						email: 'test123@naver.com',
 						businessTrip: Business,
 						correction: Correction,
 						production: Production,
@@ -51,7 +51,7 @@ export default function photographer() {
 				}),
 			});
 		},
-		[BusinessState, Correction, Production, memo],
+		[BusinessState, Correction, Production, memo, portfolioURL],
 	);
 	return (
 		<div className={styles.Container}>

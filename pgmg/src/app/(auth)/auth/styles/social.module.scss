@@ -1,3 +1,5 @@
+@import '@/app/styles/_mixins.module.scss';
+@import '../../../styles/color.module';
 .Container {
 	display: flex;
 	flex-direction: column;
@@ -11,7 +13,7 @@
 	}
 	.subTitle {
 		font-size: 1.6rem;
-		color: #8f8f94;
+		color:$color-5;
 		margin-bottom: 5rem;
 		text-align: center;
 	}
@@ -20,13 +22,12 @@
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
-
+		width: 100%;
 		.kakaoBtn {
 			border: 0;
 			height: 5.8rem;
 			background-color: #fee500;
 			border-radius: 90rem;
-			padding: 0.9rem 8.7rem 1rem 5.6rem;
 			font-size: 1.8rem;
 			font-weight: 600;
 			display: flex;
@@ -42,7 +43,6 @@
 			background-color: #ffffff;
 			border-radius: 90rem;
 			box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.25);
-			padding: 1.1rem 8rem;
 			font-size: 1.8rem;
 			font-weight: 500;
 			color: rgba(0, 0, 0, 0.54);
@@ -56,13 +56,13 @@
 		.LoginBtn {
 			border: 0;
 			height: 5.8rem;
-			background-color: #efeff4;
+			background-color: $color-1;
 			border-radius: 90rem;
 			box-shadow: 0 0.1rem 0.1rem 0 rgba(0, 0, 0, 0.25);
 			padding: 1.1rem 8rem;
 			font-size: 1.8rem;
 			font-weight: 500;
-			color: #4e4e53;
+			color: $color-10;
 			display: flex;
 			justify-content: center;
 			align-items: center;
@@ -71,9 +71,26 @@
 		.SignupBtn {
 			text-align: center;
 			font-size: 1.6rem;
-			color: #8f8f94;
+			color: $color-5;
 			font-weight: 500;
 			text-decoration-line: underline;
 		}
+	}
+}
+
+@include mobile{
+	.Container{
+
+		font-size: 2.6rem;
+		.Title {
+			font-size: 2.6rem;
+		}
+		.subTitle {
+			font-size: 1.4rem;
+			color: $color-5;
+			margin-bottom: 5rem;
+			text-align: center;
+		}
+
 	}
 }

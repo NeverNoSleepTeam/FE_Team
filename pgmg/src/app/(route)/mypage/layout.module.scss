@@ -11,45 +11,62 @@
 		position: relative;
 
 		.profileBgImg {
+			width: 100%;
 			height: 56rem;
-			border: 0.1rem solid $color-2;
+			border: 0.1rem solid $color-1;
 			border-radius: 2.6rem;
 		}
 
 		.leftContentWrapper {
-			position: absolute;
-			top: 43.6rem;
+			position: relative;
+			top: -6.2%;
 			left: 0;
 			padding: 0rem 2rem;
 			background: #fff;
-			border: 0.1rem solid $color-2;
+			border: 0.1rem solid $color-1;
 			border-radius: 2rem;
 
-			.profileImg {
-				position: absolute;
-				top: 0;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				width: 12.8rem;
-				height: 12.8rem;
-			}
+			.userProfileInner {
+				.userProfile {
+					position: relative;
+					padding: 2rem 0;
 
-			.userName {
-				display: flex;
-				align-items: center;
-				flex-direction: column;
-				padding-top: 7.4rem;
-				margin-bottom: 2rem;
+					.profileImg {
+						position: absolute;
+						top: 10%;
+						left: 16%;
+						transform: translate(-50%, -50%);
+						width: 12.8rem;
+						height: 12.8rem;
+					}
 
-				.name {
-					color: #000;
-					font-size: 2.4rem;
-					font-weight: bold;
-				}
-				.nameState {
-					margin-top: 0.4rem;
-					color: $color-6;
-					font-size: 1.6rem;
+					.nameWrap {
+						display: flex;
+						flex-direction: column;
+						gap: 0.4rem;
+						padding-left: 14.3rem;
+
+						.name {
+							color: #000;
+							font-size: 2.4rem;
+							font-weight: bold;
+						}
+
+						.nameState {
+							color: $color-5;
+							font-size: 1.6rem;
+						}
+					}
+
+					.heart {
+						position: absolute;
+						top: 31.33%;
+						right: 0;
+						transform: translate(-50%, -50%);
+						width: 2.4rem;
+						height: 2.4rem;
+						cursor: pointer;
+					}
 				}
 			}
 
@@ -70,12 +87,10 @@
 					color: #fff;
 
 					&:first-child {
-						background: #efeff4;
-						color: $color-4;
+						background: $color-1;
 					}
 					&:last-child {
 						background: $main-color;
-						color: $color-2;
 					}
 
 					img {
@@ -100,7 +115,7 @@
 					.info {
 						margin-top: 1rem;
 						font-size: 1.5rem;
-						color: $color-10;
+						color: $color-9;
 					}
 				}
 			}
@@ -125,17 +140,17 @@
 				gap: 3rem;
 
 				li {
-					color: $color-4;
+					color: $color-3;
 					font-size: 1.6rem;
 					font-weight: bold;
 
 					&.active {
-						color: #000;
+						color: $color-10;
 
 						a {
 							span {
 								color: #efeff4;
-								background: $color-10;
+								background: $color-9;
 							}
 						}
 					}
@@ -147,7 +162,7 @@
 						span {
 							padding: 0.6rem 1.2rem;
 							margin-left: 0.8rem;
-							background: $color-1;
+							background: #efeff4;
 							font-size: 1.4rem;
 							border-radius: 1.6rem;
 						}
@@ -161,7 +176,7 @@
 			}
 		}
 
-		.postWrap {
+		.rightInner {
 			display: flex;
 			flex-direction: column;
 			gap: 2rem;
@@ -173,13 +188,32 @@
 
 				.postInner {
 					padding: 1rem 1rem 0 1rem;
+					border: 0.1rem solid $color-1;
+					border-radius: 2rem;
+				}
+
+				.noPost {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					padding: 0rem 3rem;
+					width: 100%;
+					min-height: 16.4rem;
 					border: 0.1rem solid $color-2;
 					border-radius: 2rem;
+
+					p {
+						color: $color-4;
+						font-size: 1.4rem;
+						text-align: center;
+					}
 				}
 			}
 		}
 
 		.imgContentWrap {
+			padding-top: 4rem;
+
 			.imgContent {
 				display: flex;
 				flex-direction: row;
@@ -197,7 +231,7 @@
 					justify-content: center;
 					padding: 0rem 3rem;
 					width: calc((100% / 3) - 1.4rem);
-					border: 0.1rem solid $color-2;
+					border: 0.1rem dashed $color-2;
 					border-radius: 2rem;
 
 					p {

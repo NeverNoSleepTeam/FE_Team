@@ -1,9 +1,13 @@
+'use client';
+
 import Image from 'next/image';
-import style from './page.module.scss';
+import style from './layout.module.scss';
 
 import myProfile from '@/app/common/img/my_profile.png';
-import calender from '@/app/common/img/gray-calendar-icon.png';
+import calender_w from '@/app/common/img/calender_w.png';
 import chat from '@/app/common/img/chat_w.png';
+import heart from '@/app/common/img/heart.png';
+import heartActive from '@/app/common/img/heart_active.png';
 import profileBg from '@/app/common/img/default_profile_bg.png';
 import leftArrow from '@/app/common/img/chevron_left.png';
 import rightArrow from '@/app/common/img/chevron_right.png';
@@ -11,8 +15,14 @@ import rightArrow from '@/app/common/img/chevron_right.png';
 import SinglePost from '../_component/SinglePost';
 import { Title4 } from '@/app/common/elements/Title';
 import { faker } from '@faker-js/faker';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
-export default function Mypage() {
+type Props = { children: React.ReactNode };
+
+export default function Mypage({ children }: Props) {
+	const pathname = usePathname();
+
 	return (
 		<div className={style.contentWrapper}>
 			<div className={style.leftContent}>
@@ -22,22 +32,29 @@ export default function Mypage() {
 					alt="profile background image"
 					fill={false}
 					priority
-				></Image>
+				/>
 				<div className={style.leftContentWrapper}>
-					<Image className={style.profileImg} src={myProfile} alt="profile" />
-					<div className={style.userName}>
-						<span className={style.name}>닉네임</span>
-						<span className={style.nameState}>일반회원</span>
-					</div>
-					<div className={style.buttonWrap}>
-						<button>
-							<Image src={calender} alt="calender" />
-							<a>캘린더 보기</a>
-						</button>
-						<button>
-							<Image src={chat} alt="calender" />
-							<a>제안하기</a>
-						</button>
+					<div className={style.userProfileInner}>
+						<div className={style.userProfile}>
+							<Image className={style.profileImg} src={myProfile} alt="profile" />
+							<div className={style.nameWrap}>
+								<span className={style.name}>닉네임</span>
+								<span className={style.nameState}>일반회원</span>
+							</div>
+							<button className={style.heart}>
+								<Image src={heart} alt="heart" />
+							</button>
+						</div>
+						<div className={style.buttonWrap}>
+							<button>
+								<Image src={calender_w} alt="calender" />
+								<a>캘린더 보기</a>
+							</button>
+							<button>
+								<Image src={chat} alt="calender" />
+								<a>제안하기</a>
+							</button>
+						</div>
 					</div>
 					<div className={style.userInfoWrapper}>
 						<div className={style.userInfo}>
@@ -62,18 +79,18 @@ export default function Mypage() {
 			</div>
 
 			<div className={style.rightContent}>
-				<div className={style.postWrap}>
+				<div className={style.rightInner}>
 					<div className={style.controllBar}>
-						<ul className={style.tabList}>
-							<li>
-								<a>
+						<ul className={`${style.tabList} + ${style.active}`}>
+							<li className={style.active}>
+								<Link href={'/mypage'}>
 									작성글<span>0</span>
-								</a>
+								</Link>
 							</li>
 							<li>
-								<a>
+								<Link href={'/mypage/heart_list'}>
 									좋아요<span>0</span>
-								</a>
+								</Link>
 							</li>
 						</ul>
 						<div className={style.controll}>
@@ -85,34 +102,43 @@ export default function Mypage() {
 							</button>
 						</div>
 					</div>
-					<div className={style.postContent}>
-						<div className={style.postInner}>
-							<SinglePost />
-						</div>
-						<div className={style.postInner}>
-							<SinglePost />
-						</div>
-						<div className={style.postInner}>
-							<SinglePost />
-						</div>
-						<div className={style.postInner}>
-							<SinglePost />
-						</div>
-					</div>
-				</div>
+					{pathname === '/mypage' ? (
+						<>
+							<div className={style.postContent}>
+								<div className={style.noPost}>
+									<p>커뮤니티에서 내가 작성한 글을 이곳에서 확인할 수 있어요!</p>
+								</div>
+								<div className={style.postInner}>
+									<SinglePost />
+								</div>
+								<div className={style.postInner}>
+									<SinglePost />
+								</div>
+								<div className={style.postInner}>
+									<SinglePost />
+								</div>
+								<div className={style.postInner}>
+									<SinglePost />
+								</div>
+							</div>
 
-				<div className={style.imgContentWrap}>
-					<Title4 colorTitle={`닉네임`} title={'님 등록이미지'} />
-					<div className={style.imgContent}>
-						<div className={style.noImage}>
-							<p>프로필에서 여러이미지를 등록하면 이 공간에 표시됩니다!</p>
-						</div>
-						<img src={faker.image.avatar()} alt="profileImage" />
-						<img src={faker.image.avatar()} alt="profile" />
-						<img src={faker.image.avatar()} alt="profile" />
-						<img src={faker.image.avatar()} alt="profile" />
-						<img src={faker.image.avatar()} alt="profile" />
-					</div>
+							<div className={style.imgContentWrap}>
+								<Title4 colorTitle={`닉네임`} title={'님 등록이미지'} />
+								<div className={style.imgContent}>
+									<div className={style.noImage}>
+										<p>프로필에서 여러이미지를 등록하면 이 공간에 표시됩니다!</p>
+									</div>
+									<img src={faker.image.avatar()} alt="profileImage" />
+									<img src={faker.image.avatar()} alt="profile" />
+									<img src={faker.image.avatar()} alt="profile" />
+									<img src={faker.image.avatar()} alt="profile" />
+									<img src={faker.image.avatar()} alt="profile" />
+								</div>
+							</div>
+						</>
+					) : (
+						<>{children}</>
+					)}
 				</div>
 			</div>
 		</div>

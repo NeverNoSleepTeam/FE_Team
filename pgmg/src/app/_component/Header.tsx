@@ -73,7 +73,7 @@ export default function Header() {
 										</Link>
 									</li>
 									<li>
-										<Link href={'/mypage/interest_list'}>
+										<Link href={'/mypage/heart_list'}>
 											<span>관심리스트</span>
 										</Link>
 									</li>

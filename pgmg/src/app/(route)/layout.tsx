@@ -62,12 +62,12 @@ export default function MainLayout({ children }: Props) {
 									// }
 								>
 									<div
-										// className={style.leftSectionInner}
-										className={
-											(window.scrollY as number) > 460
-												? style.leftSectionInnerFixed
-												: style.leftSectionInner
-										}
+										className={style.leftSectionInner}
+										// className={
+										// 	(window.scrollY as number) > 460
+										// 		? style.leftSectionInnerFixed
+										// 		: style.leftSectionInner
+										// }
 									>
 										<nav>
 											<NavMenu />

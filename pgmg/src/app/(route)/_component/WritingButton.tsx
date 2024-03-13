@@ -1,12 +1,24 @@
+'use client';
+
 import Link from 'next/link';
 import style from './writingButton.module.scss';
+import { usePathname } from 'next/navigation';
 
 export default function WritingButton() {
+	const pathname = usePathname();
+	const postUploadHandler = () => {};
+
 	return (
 		<div className={style.buttonWrapper}>
-			<Link href={'/writing'} className={style.button}>
-				글 쓰기
-			</Link>
+			{pathname === '/writing' ? (
+				<button className={style.button} onClick={postUploadHandler}>
+					게시글 업로드
+				</button>
+			) : (
+				<Link href={'/writing'} className={style.button}>
+					글 쓰기
+				</Link>
+			)}
 			<span className={style.text}>* 해당 게시판은 “모델회원”만 작성가능합니다.</span>
 		</div>
 	);

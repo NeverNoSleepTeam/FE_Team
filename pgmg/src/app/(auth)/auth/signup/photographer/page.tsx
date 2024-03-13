@@ -1,6 +1,6 @@
 'use client';
 import styles from '@/app/(auth)/auth/styles/photographer.module.scss';
-import { useCallback, useRef, useState } from 'react';
+import { ChangeEvent, FormEvent, useCallback, useRef, useState } from 'react';
 import Image from 'next/image';
 import CloseBtn from '../../../../../../public/closebtn.svg';
 import OpenBtn from '../../../../../../public/openbtn.svg';
@@ -14,6 +14,7 @@ export default function photographer() {
 	const [CorrectionState, setCorrectionState] = useState(false);
 	const [Production, setProduction] = useState('연출 여부 선택해 주세요.');
 	const [ProductionState, setProductionState] = useState(false);
+	const [file, setFile] = useState<Blob | null>(null);
 	const [portfolioURL, setPortfolioURL] = useInput('');
 	const imageInput = useRef<HTMLInputElement>(null);
 	const { memo } = EmailMemoStore();
@@ -32,26 +33,59 @@ export default function photographer() {
 	const HandleRef = () => {
 		imageInput.current.click();
 	};
+	const HandleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
+		if (e.target.files && e.target.files.length > 0) {
+			const selectedFile = e.target.files[0];
+			console.log(selectedFile);
+			// Basic file validation (optional)
+			if (!selectedFile.type.match('application/pdf')) {
+				alert('Please select a PDF file.');
+				return;
+			}
+
+			setFile(selectedFile); // Update state with the selected file
+		} else {
+			setFile(null); // Set file to null if no file is selected
+		}
+	};
+
 	const onsubmit = useCallback(
-		async (e: any) => {
+		async (e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
-			await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/prophoto-register`, {
+			const formData = new FormData();
+			formData.append('file', file!);
+			// console.log(formData.get('file'));
+			// await fetch(
+			// 	`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/prophoto-register?email=qwe&businessTrip=a&correction=a&production=a&portfolioURL=${portfolioURL}`,
+			// 	{
+			// 		method: 'POST',
+			// 		headers: {
+			// 			'Content-Type': 'multipart/form-data',
+			// 		},
+			// 		body: formData,
+			// 	},
+			// );
+
+			const apiUrl = `${process.env.NEXT_PUBLIC_ENDPOINT}/auth/prophoto-register`;
+			const queryParams = new URLSearchParams({
+				email: 'qwe',
+				businessTrip: 'a',
+				correction: 'a',
+				production: 'a',
+				portfolioURL: portfolioURL,
+			});
+
+			const finalUrl = `${apiUrl}?${queryParams.toString()}`;
+
+			await fetch(finalUrl, {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json',
+					'Content-Type': 'multipart/form-data',
 				},
-				body: JSON.stringify({
-					RequestBody: {
-						email: 'test123@naver.com',
-						businessTrip: Business,
-						correction: Correction,
-						production: Production,
-						portgfolioURL: portfolioURL,
-					},
-				}),
+				body: formData,
 			});
 		},
-		[BusinessState, Correction, Production, memo, portfolioURL],
+		[BusinessState, Correction, Production, memo, portfolioURL, file],
 	);
 	return (
 		<div className={styles.Container}>
@@ -187,7 +221,13 @@ export default function photographer() {
 					</div>
 					<div>
 						<div className={styles.TextDiv}>
-							<input className={styles.fileInput} type="file" accept="image/*" ref={imageInput} />
+							<input
+								className={styles.fileInput}
+								type="file"
+								accept="application/pdf"
+								ref={imageInput}
+								onChange={HandleFileChange}
+							/>
 							<button className={styles.ListButtonForm} onClick={HandleRef}>
 								PDF 파일을 업로드 해주세요
 								<Image src={Upload} alt="업 로드" />

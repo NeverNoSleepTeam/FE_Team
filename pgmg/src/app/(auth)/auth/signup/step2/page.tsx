@@ -22,7 +22,38 @@ export default function step2() {
 	const [NameState, setNameState] = useState('');
 	const [PasswordCheck, setPasswordCheck] = useState('');
 	const [NameError, setNameError] = useState(false);
+	const [location, setlocation] = useState('지역을 선택해 주세요.');
+	const [global, setglobal] = useState('국적을 선택해 주세요.');
+	const [GlobalOn, setGlobalChange] = useState(false);
+	const [LocalOn, setLocalChange] = useState(false);
 	const { setMemo } = EmailMemoStore();
+
+	const locations = [
+		'서울',
+		'인천',
+		'경기',
+		'부산',
+		'대구',
+		'대전',
+		'세종',
+		'울산',
+		'제주',
+		'충북',
+		'충남',
+		'경북',
+		'경남',
+		'전북',
+		'전남',
+		'기타',
+	];
+	const GobalChoice = useCallback(e => {
+		setglobal(e.target.value);
+		setGlobalChange(false);
+	}, []);
+	const LocationChoice = useCallback(e => {
+		setlocation(e.target.value);
+		setLocalChange(false);
+	}, []);
 	const ClickGender = useCallback(async (e: any) => {
 		await setGender(e.target.value);
 		setgenderbtn(false);
@@ -114,6 +145,8 @@ export default function step2() {
 					passwd2: CheckPassword,
 					name: NickName,
 					gender: Gender,
+					city: location,
+					nationality: global,
 					intro: UserIntro,
 				}),
 			});
@@ -130,21 +163,8 @@ export default function step2() {
 					router.replace('/auth/signup/photographer');
 				}
 			}
-			// const result = await signIn('credentials', {
-			// 	email: UserId,
-			// 	password: UserPassword,
-			// 	redirect: false, // 리다이렉션을 수동으로 처리하려면 false로 설정합니다.
-			// });
-			//
-			// if (result?.error) {
-			// 	// 로그인 실패 처리
-			// 	console.log('로그인 실패:', result.error);
-			// } else {
-			// 	// 로그인 성공 처리
-			// 	console.log('로그인 성공:', result);
-			// }
 		},
-		[UserId, UserPassword, CheckPassword, NickName, Gender, UserIntro],
+		[UserId, UserPassword, CheckPassword, NickName, Gender, location, global, UserIntro],
 	);
 	const onClickModel = () => {
 		router.replace('modelUser');
@@ -275,6 +295,59 @@ export default function step2() {
 							''
 						)}
 					</div>
+				</div>
+				<div className={styles.SignupSubForm}>
+					<label className={styles.FormTitle}>국적*</label>
+					<div className={styles.TextDiv}>
+						<button className={styles.LocationForm} onClick={() => setGlobalChange(prev => !prev)}>
+							{global}
+							{GlobalOn ? <Image src={CloseBtn} alt="버튼" /> : <Image src={OpenBtn} alt="버튼" />}
+						</button>
+					</div>
+					{GlobalOn ? (
+						<div className={styles.GobalList}>
+							<ul>
+								<li>
+									<button type="button" value="내국인" onClick={GobalChoice}>
+										내국인
+									</button>
+								</li>
+								<li>
+									<button type="button" value="외국인" onClick={GobalChoice}>
+										외국인
+									</button>
+								</li>
+							</ul>
+						</div>
+					) : (
+						''
+					)}
+				</div>
+				<div className={styles.SignupSubForm}>
+					<label className={styles.FormTitle}>지역*</label>
+					<div className={styles.TextDiv}>
+						<button className={styles.LocationForm} onClick={() => setLocalChange(prev => !prev)}>
+							{location}
+							{LocalOn ? <Image src={CloseBtn} alt="버튼" /> : <Image src={OpenBtn} alt="버튼" />}
+						</button>
+					</div>
+					{LocalOn ? (
+						<div className={styles.LocalList}>
+							<ul>
+								{locations.map(LocalCity => {
+									return (
+										<li>
+											<button type="button" value={LocalCity} onClick={LocationChoice}>
+												{LocalCity}
+											</button>
+										</li>
+									);
+								})}
+							</ul>
+						</div>
+					) : (
+						''
+					)}
 				</div>
 				<div className={styles.SignupSubForm}>
 					<label className={styles.FormTitle}>자기소개</label>

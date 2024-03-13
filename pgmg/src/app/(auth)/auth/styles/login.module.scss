@@ -38,7 +38,7 @@
         width: 100%;
         border:0;
         padding:1.6rem 3.6rem;
-        background-color: white;
+        background-color: $color-1;
         border-radius: 99.9rem;
         font-size: 2rem;
         cursor : pointer;
@@ -46,9 +46,8 @@
       }
       .loginBtn{
         width: 100%;
-        border:0;
         padding:1.6rem 3.6rem;
-        background-color: #250996;
+        background-color: $main-color;
         color: white;
         border-radius: 99.9rem;
         font-size: 2rem;

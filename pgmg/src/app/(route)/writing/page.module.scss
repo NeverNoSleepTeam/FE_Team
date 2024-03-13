@@ -1,0 +1,89 @@
+@import '../../styles/color.module';
+
+.formContainer {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+
+.inputBox {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	padding: 1.6rem 2.5rem;
+	width: 100%;
+	border: 0.1rem solid $color-2;
+	border-radius: 1.6rem;
+
+	&Date {
+		display: flex;
+		align-items: flex-start;
+		padding: 1.6rem 2.5rem;
+		width: 12.5rem;
+		border: 0.1rem solid $color-2;
+		border-radius: 1.6rem;
+	}
+
+	.selectBox {
+		display: none;
+		position: absolute;
+		left: 14rem;
+		top: 6rem;
+		width: 41.5rem;
+		height: 33rem;
+		background: #fff;
+		box-shadow: 0 0.4rem 1.6rem 0 rgba(0, 0, 0, 0.16);
+		border: none;
+		z-index: 99;
+
+		&:focus {
+			outline: none;
+		}
+
+		option {
+			display: flex;
+			align-items: center;
+			padding-left: 6.4rem;
+			height: 5.5rem;
+		}
+	}
+}
+
+.label {
+	width: 10rem;
+	font-size: 1.6rem;
+	font-weight: bold;
+	color: $color-10;
+}
+
+.input {
+	flex: 1;
+	padding: 0 2rem;
+	height: 2rem;
+	border: none;
+	color: $color-10;
+	font-size: 1.6rem;
+
+	&:focus {
+		outline: none;
+	}
+
+	&::placeholder {
+		color: $color-3;
+	}
+
+	&::-webkit-outer-spin-button,
+	&::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+	&[type='number'] {
+		-moz-appearance: textfield;
+		appearance: textfield;
+	}
+}
+
+.textarea {
+	width: 100%;
+	height: 40dvh;
+}

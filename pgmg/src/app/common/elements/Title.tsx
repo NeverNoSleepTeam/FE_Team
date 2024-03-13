@@ -12,7 +12,7 @@ export const Title1 = ({ title, colorTitle }: Props) => {
 
 export const Title2 = ({ title, colorTitle }: Props) => {
 	return (
-		<h3 className={style.title2}>
+		<h3 className={style.title}>
 			{colorTitle} <span>{title}</span>
 		</h3>
 	);

@@ -53,7 +53,7 @@ export default function Header() {
 							</button>
 							<div className={visible ? style.myArea : style.myAreaHidden}>
 								<div className={style.btnWrap}>
-									<Link href={'/auth/login'}>로그인</Link>
+									<Link href={'/auth/social'}>로그인</Link>
 									<Link href={'/auth/signup'}>회원가입</Link>
 								</div>
 								<ul className={style.myList}>

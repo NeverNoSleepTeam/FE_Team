@@ -1,5 +1,5 @@
 @import '../../styles/color.module';
-
+@import '~react-quill/dist/quill.core.css';
 .formContainer {
 	display: flex;
 	flex-direction: column;
@@ -93,7 +93,6 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
-
 		.label,
 		img {
 			flex: 1;
@@ -101,9 +100,10 @@
 	}
 }
 
-.editorStyle {
+.editorStyle >*{
 	flex: 1;
-	height: 31.8dvh;
+	border : 0 !important;
+	color: black;
 }
 
 .quill {

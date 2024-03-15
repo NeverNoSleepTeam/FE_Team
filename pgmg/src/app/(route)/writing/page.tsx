@@ -51,11 +51,13 @@ export default function writing() {
 				<label htmlFor="" className={style.label}>
 					내용
 				</label>
-				<QuillNoSSR
-					className={style.editorStyle}
-					theme="snow"
-					placeholder="상세내용을 입력해주세요."
-				/>
+				<div>
+					<QuillNoSSR
+						className={style.editorStyle}
+						theme="snow"
+						placeholder="상세내용을 입력해주세요."
+					/>
+				</div>
 			</div>
 			<div className={style.inputWrap}>
 				<div className={style.inputBox}>

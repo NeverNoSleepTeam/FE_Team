@@ -1,5 +1,7 @@
-import QuillNoSSR from '../_component/Editor';
+import QuillNoSSR from '@/app/(route)/_component/Editor';
 import style from './page.module.scss';
+import Image from 'next/image';
+import images from '@/app/common/img/add-photo-alternate.png';
 
 export default function writing() {
 	return (
@@ -45,11 +47,25 @@ export default function writing() {
 					placeholder="가격을 입력해주세요. (ex : 30000)"
 				/>
 			</div>
-			<div className={style.inputBox}>
+			<div className={style.inputBox} style={{ height: '40dvh' }}>
 				<label htmlFor="" className={style.label}>
 					내용
 				</label>
-				<QuillNoSSR theme="snow" placeholder="상세내용을 입력해주세요." />
+				<QuillNoSSR
+					className={style.editorStyle}
+					theme="snow"
+					placeholder="상세내용을 입력해주세요."
+				/>
+			</div>
+			<div className={style.inputWrap}>
+				<div className={style.inputBox}>
+					<div className={style.label}>메인이미지 등록(필수)</div>
+					<Image src={images} alt="메인 이미지" />
+				</div>
+				<div className={style.inputBox}>
+					<div className={style.label}>상세이미지 등록</div>
+					<Image src={images} alt="상세 이미지" />
+				</div>
 			</div>
 		</form>
 	);

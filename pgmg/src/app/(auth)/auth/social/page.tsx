@@ -5,14 +5,15 @@ import Image from 'next/image';
 import Kakaologo from '@/app/common/img/kakao.png';
 import Googlelogo from '@/app/common/img/google.png';
 import Link from 'next/link';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 
 export default function social() {
+	const session = useSession();
 	const ClickKaKao = () => {
 		signIn('kakao');
 	};
 	const ClickGoogle = () => {
-		signIn('google');
+		const user2 = signIn('google');
 	};
 	return (
 		<div className={styles.Container}>

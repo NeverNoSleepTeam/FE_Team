@@ -2,6 +2,7 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import KakaoProvider from 'next-auth/providers/kakao';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import { callback } from 'next-auth/core/routes';
 export const handler = NextAuth({
 	pages: {
 		signIn: '/auth/login',
@@ -15,6 +16,7 @@ export const handler = NextAuth({
 			clientId: `${process.env.kakao_clientId}`,
 			clientSecret: `${process.env.kakao_clientSecret}`,
 		}),
+
 		CredentialsProvider({
 			async authorize(credentials: Record<string, string>) {
 				const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/basic-login`, {

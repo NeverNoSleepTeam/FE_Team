@@ -83,7 +83,37 @@
 	}
 }
 
-.textarea {
-	width: 100%;
-	height: 40dvh;
+.inputWrap {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+
+	.inputBox {
+		flex: 1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+
+		.label,
+		img {
+			flex: 1;
+		}
+	}
+}
+
+.editorStyle {
+	flex: 1;
+	height: 31.8dvh;
+}
+
+.quill {
+	flex: 1;
+	height: 32dvh;
+
+	.ql-toolbar.ql-snow {
+		border: none !important;
+	}
+	.ql-container.ql-snow {
+		border: none !important;
+	}
 }

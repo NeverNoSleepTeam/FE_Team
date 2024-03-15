@@ -26,7 +26,7 @@ export default function step2() {
 	const [global, setglobal] = useState('국적을 선택해 주세요.');
 	const [GlobalOn, setGlobalChange] = useState(false);
 	const [LocalOn, setLocalChange] = useState(false);
-	const { setMemo } = EmailMemoStore();
+	const { setMemo, setLevel } = EmailMemoStore();
 
 	const locations = [
 		'서울',
@@ -90,7 +90,7 @@ export default function step2() {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({
-					email: NickName.trim(),
+					name: NickName.trim(),
 				}),
 			});
 			setNameError(true);
@@ -153,13 +153,17 @@ export default function step2() {
 			if (result.ok) {
 				if (type == 'basic') {
 					setMemo(UserId);
-					router.replace('/auth/singup/stepend');
+					setLevel('일반회원');
+					router.replace('/auth/signup/stepend');
 				}
 				if (type == 'model') {
 					setMemo(UserId);
+					setLevel('모델회원');
 					router.replace('/auth/signup/modelUser');
 				}
 				if (type == 'photographer') {
+					setMemo(UserId);
+					setLevel('사진기사');
 					router.replace('/auth/signup/photographer');
 				}
 			}

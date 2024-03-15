@@ -53,35 +53,23 @@ export default function photographer() {
 		async (e: FormEvent<HTMLFormElement>) => {
 			e.preventDefault();
 			const formData = new FormData();
+			const RequestBody = new Blob(
+				[
+					JSON.stringify({
+						email: memo,
+						businessTrip: Business,
+						correction: Correction,
+						production: Production,
+						portfolioURL: portfolioURL,
+					}),
+				],
+				{ type: 'application/json' },
+			);
+			formData.append('RequestBody', RequestBody);
 			formData.append('file', file!);
-			// console.log(formData.get('file'));
-			// await fetch(
-			// 	`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/prophoto-register?email=qwe&businessTrip=a&correction=a&production=a&portfolioURL=${portfolioURL}`,
-			// 	{
-			// 		method: 'POST',
-			// 		headers: {
-			// 			'Content-Type': 'multipart/form-data',
-			// 		},
-			// 		body: formData,
-			// 	},
-			// );
-
-			const apiUrl = `${process.env.NEXT_PUBLIC_ENDPOINT}/auth/prophoto-register`;
-			const queryParams = new URLSearchParams({
-				email: 'qwe',
-				businessTrip: 'a',
-				correction: 'a',
-				production: 'a',
-				portfolioURL: portfolioURL,
-			});
-
-			const finalUrl = `${apiUrl}?${queryParams.toString()}`;
-
-			await fetch(finalUrl, {
+			console.log(formData.get('RequestBody'));
+			await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/prophoto-register`, {
 				method: 'POST',
-				headers: {
-					'Content-Type': 'multipart/form-data',
-				},
 				body: formData,
 			});
 		},

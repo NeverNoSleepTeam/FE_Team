@@ -1,15 +1,27 @@
 'use client';
 
-import QuillNoSSR from '@/app/(route)/_component/Editor';
 import style from '@/app/(route)/writing/page.module.scss';
 import Image from 'next/image';
 import images from '@/app/common/img/add-photo-alternate.png';
+import { useRef, useState } from 'react';
+
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { useState } from 'react';
+
+import ReactQuill from 'react-quill';
+import QuillNoSSR from '@/app/(route)/_component/Editor';
+
+type ValuePiece = Date | null | string;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export default function Writing() {
-	const [value, onChange] = useState(new Date());
+	const [startValue, onStartChange] = useState<Value>(new Date());
+	const [endValue, onEndChange] = useState<Value>(new Date());
+
+	const quillInstance = useRef<ReactQuill>(null);
+	const [content, setContent] = useState<string>('');
+
+	console.log(content);
 
 	return (
 		<form className={style.formContainer}>
@@ -41,17 +53,38 @@ export default function Writing() {
 					<div className={style.dataTime}>
 						<div className={style.calendarBox}>
 							<input className={style.calendar} type="text" />
-							<Calendar />
+							<Calendar locale="ko" onChange={onStartChange} value={startValue} />
 						</div>
 						<div className={style.timeBox}>
 							<input type="text" />
+							<select name="am_pm" className={style.selectBox} size={6} multiple>
+								<option value="am">오전</option>
+								<option value="pm">오후</option>
+							</select>
+							<select name="hour" className={style.selectBox} size={6} multiple>
+								<option value="hand">손</option>
+								<option value="hair">헤어</option>
+								<option value="fitting">피팅</option>
+								<option value="face">얼굴</option>
+								<option value="body">전신</option>
+								<option value="etc">기타</option>
+							</select>
+							<select name="minute" className={style.selectBox} size={6} multiple>
+								<option value="hand">손</option>
+								<option value="hair">헤어</option>
+								<option value="fitting">피팅</option>
+								<option value="face">얼굴</option>
+								<option value="body">전신</option>
+								<option value="etc">기타</option>
+							</select>
 						</div>
 					</div>
 					<span className={style.wave}>~</span>
 					<div className={style.dataTime}>
 						<div className={style.calendarBox}>
 							<input className={style.calendar} type="text" />
-							<Calendar />
+							<Calendar locale="ko" onChange={onEndChange} value={endValue} />
+							<div className={style.calendar}>{}</div>
 						</div>
 						<div className={style.timeBox}>
 							<input type="text" />
@@ -81,6 +114,9 @@ export default function Writing() {
 				</label>
 				<QuillNoSSR
 					className={style.editorStyle}
+					forwardedRef={quillInstance}
+					value={content}
+					onChange={setContent}
 					theme="snow"
 					placeholder="상세내용을 입력해주세요."
 				/>

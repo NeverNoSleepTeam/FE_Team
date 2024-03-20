@@ -7,6 +7,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import { useCallback, useState } from 'react';
 import EmailMemoStore from '@/app/store/memo';
 import useInput from '@/app/Hooks/useInput';
+import { redirect, useRouter } from 'next/navigation';
 
 export default function modelUser() {
 	const [height, setheight] = useInput('');
@@ -15,10 +16,10 @@ export default function modelUser() {
 	const [bottom, setbottom] = useInput('');
 	const [shoes, setshose] = useInput('');
 	const { memo } = EmailMemoStore();
-
+	const router = useRouter();
 	const onsubmit = async (e: any) => {
 		e.preventDefault();
-		await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/model-register`, {
+		const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/model-register`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -32,6 +33,9 @@ export default function modelUser() {
 				shoes: shoes,
 			}),
 		});
+		if (res.ok) {
+			router.replace('/auth/signup/stepend');
+		}
 	};
 	return (
 		<div className={styles.Container}>

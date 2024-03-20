@@ -1,8 +1,9 @@
 .react-calendar {
+	display: none;
 	position: absolute;
 	top: 6rem;
 	padding: 0.4rem;
-	display: block;
+	/* display: block; */
 	width: 42.7rem;
 	border: none;
 	box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16);

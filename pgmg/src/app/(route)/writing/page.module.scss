@@ -151,27 +151,3 @@
 		}
 	}
 }
-
-.editorStyle {
-	flex: 1;
-	color: #000;
-	&:last-child {
-		height: 32dvh;
-	}
-}
-
-.editorStyle > * {
-	padding: 0 !important;
-	font-size: 1.6rem;
-	border: none !important;
-	color: #000;
-}
-
-.ql-container {
-	height: 32dvh;
-}
-
-.quill {
-	flex: 1;
-	height: 32dvh;
-}

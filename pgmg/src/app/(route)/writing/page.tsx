@@ -13,6 +13,7 @@ import '@/app/(route)/_component/calendarCustom.css';
 
 import ReactQuill from 'react-quill';
 import QuillNoSSR from '@/app/(route)/_component/Editor';
+import '@/app/(route)/_component/editorCustom.css';
 
 type ValuePiece = Date | null | string;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
@@ -194,12 +195,11 @@ export default function Writing() {
 					placeholder="가격을 입력해주세요. (ex : 30000)"
 				/>
 			</div>
-			<div className={style.inputBox} style={{ height: '40dvh' }}>
+			<div className={style.inputBox} style={{ height: '38dvh' }}>
 				<label htmlFor="" className={style.label}>
 					내용
 				</label>
 				<QuillNoSSR
-					className={style.editorStyle}
 					forwardedRef={quillInstance}
 					value={content}
 					onChange={setContent}

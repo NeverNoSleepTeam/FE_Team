@@ -1,0 +1,23 @@
+.quill {
+	flex: 1;
+	height: 32dvh;
+	color: #000;
+}
+.ql-toolbar.ql-snow {
+	padding: 0;
+	border: none;
+}
+
+.ql-container.ql-snow {
+	border: none;
+}
+.ql-editor {
+	padding: 1.5rem 0.5rem;
+	font-size: 1.6rem;
+	font-weight: 500;
+}
+
+.ql-editor.ql-blank::before {
+	color: #bdbdc2;
+	font-style: normal;
+}

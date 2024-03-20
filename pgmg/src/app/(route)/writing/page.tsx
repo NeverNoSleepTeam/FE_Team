@@ -1,5 +1,6 @@
 'use client';
 
+import classNames from 'classnames';
 import style from '@/app/(route)/writing/page.module.scss';
 import Image from 'next/image';
 import images from '@/app/common/img/add-photo-alternate.png';
@@ -14,13 +15,14 @@ import '@/app/(route)/_component/calendarCustom.css';
 import ReactQuill from 'react-quill';
 import QuillNoSSR from '@/app/(route)/_component/Editor';
 import '@/app/(route)/_component/editorCustom.css';
+import { faker } from '@faker-js/faker';
 
-type ValuePiece = Date | null | string;
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+type DayPiece = Date | null | string;
+type DaySelet = DayPiece | [DayPiece, DayPiece];
 
 export default function Writing() {
-	const [startValue, onStartChange] = useState<Value>(new Date());
-	const [endValue, onEndChange] = useState<Value>(new Date());
+	const [startValue, onStartChange] = useState<DaySelet>(new Date());
+	const [endValue, onEndChange] = useState<DaySelet>(new Date());
 
 	const quillInstance = useRef<ReactQuill>(null);
 	const [content, setContent] = useState<string>('');
@@ -49,10 +51,15 @@ export default function Writing() {
 				<input
 					type="text"
 					className={style.input}
-					disabled
+					// disabled
 					placeholder="카테고리를 선택해주세요."
 				/>
-				<select name="category" className={style.selectBox} size={6} multiple>
+				<select
+					name="category"
+					className={classNames(style.selectBox, style.selectBoxCategory)}
+					size={4}
+					multiple
+				>
 					<option value="hand">손</option>
 					<option value="hair">헤어</option>
 					<option value="fitting">피팅</option>
@@ -68,7 +75,7 @@ export default function Writing() {
 				<div className={style.dataTimeInner}>
 					<div className={style.dataTime}>
 						<div className={style.calendarBox}>
-							<input className={style.calendar} type="text" />
+							<input className={style.calendar} value={'2024.03.01 금요일'} type="text" />
 							<Calendar
 								locale="ko"
 								formatDay={(locale, date) => dayjs(date).format('D')}
@@ -81,17 +88,22 @@ export default function Writing() {
 							/>
 						</div>
 						<div className={style.timeBox}>
-							<div className={style.timeInputBox}>
-								<input className={style.timeInput} type="text" value={`오후 `} />
-								<input className={style.timeInput} type="text" value={`12`} />
-								<input className={style.timeInput} type="text" value={`00`} />
-							</div>
-							<select name="am_pm" className={style.selectBox} size={6} multiple>
+							<input className={style.timeValue} value={'오후 12 : 00'} />
+							<select
+								name="am_pm"
+								className={classNames(style.selectBox, style.selectBoxAmPm)}
+								size={2}
+								multiple
+							>
 								<option defaultValue="am">오전</option>
 								<option value="pm">오후</option>
 							</select>
-							<select name="hour" className={style.selectBox} size={6} multiple>
-								<option defaultValue="12">12</option>
+							<select
+								name="hour"
+								className={classNames(style.selectBox, style.selectBoxHour)}
+								size={6}
+								multiple
+							>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -103,8 +115,14 @@ export default function Writing() {
 								<option value="9">9</option>
 								<option value="10">10</option>
 								<option value="11">11</option>
+								<option defaultValue="12">12</option>
 							</select>
-							<select name="minute" className={style.selectBox} size={6} multiple>
+							<select
+								name="minute"
+								className={classNames(style.selectBox, style.selectBoxMinute)}
+								size={6}
+								multiple
+							>
 								<option defaultValue="00">00</option>
 								<option value="05">05</option>
 								<option value="10">10</option>
@@ -124,7 +142,7 @@ export default function Writing() {
 					<span className={style.wave}>~</span>
 					<div className={style.dataTime}>
 						<div className={style.calendarBox}>
-							<input className={style.calendar} type="text" />
+							<input className={style.calendar} value={'2024.03.01 금요일'} type="text" />
 							<Calendar
 								locale="ko"
 								formatDay={(locale, date) => dayjs(date).format('D')}
@@ -137,17 +155,22 @@ export default function Writing() {
 							/>
 						</div>
 						<div className={style.timeBox}>
-							<div className={style.timeInputBox}>
-								<input className={style.timeInput} type="text" value={`오후 `} />
-								<input className={style.timeInput} type="text" value={`12`} />
-								<input className={style.timeInput} type="text" value={`00`} />
-							</div>
-							<select name="am_pm" className={style.selectBox} size={6} multiple>
+							<input className={style.timeValue} value={'오후 12 : 00'} />
+							<select
+								name="am_pm"
+								className={classNames(style.selectBox, style.selectBoxAmPm)}
+								size={2}
+								multiple
+							>
 								<option defaultValue="am">오전</option>
 								<option value="pm">오후</option>
 							</select>
-							<select name="hour" className={style.selectBox} size={6} multiple>
-								<option defaultValue="12">12</option>
+							<select
+								name="hour"
+								className={classNames(style.selectBox, style.selectBoxHour)}
+								size={6}
+								multiple
+							>
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
@@ -159,8 +182,14 @@ export default function Writing() {
 								<option value="9">9</option>
 								<option value="10">10</option>
 								<option value="11">11</option>
+								<option defaultValue="12">12</option>
 							</select>
-							<select name="minute" className={style.selectBox} size={6} multiple>
+							<select
+								name="minute"
+								className={classNames(style.selectBox, style.selectBoxMinute)}
+								size={6}
+								multiple
+							>
 								<option defaultValue="00">00</option>
 								<option value="05">05</option>
 								<option value="10">10</option>
@@ -207,17 +236,35 @@ export default function Writing() {
 					placeholder="상세내용을 입력해주세요."
 				/>
 			</div>
-			<div className={style.inputWrap}>
-				<div className={style.inputBox}>
-					<div className={style.label}>메인이미지 등록(필수)</div>
+			<div className={style.imageUploadWrap}>
+				<div className={style.imageUploadBox}>
+					<div className={style.imageDot}>
+						<span>0</span> / 1
+					</div>
+					<div className={style.labelTitle}>메인이미지 등록(필수)</div>
 					<div className={style.imageBox}>
 						<Image src={images} alt="메인 이미지" />
 					</div>
 				</div>
-				<div className={style.inputBox}>
-					<div className={style.label}>상세이미지 등록</div>
-					<div className={style.imageBox}>
+				<div className={style.imageUploadBox}>
+					<div className={style.imageDot}>
+						<span>0</span> / 10
+					</div>
+					<div className={style.labelTitle}>상세이미지 등록</div>
+					{/* <div className={style.imageBox}>
 						<Image src={images} alt="상세 이미지" />
+					</div> */}
+					<div className={style.imageBoxSort}>
+						<img src={faker.image.avatar()} alt="images" />
+						<img src={faker.image.avatar()} alt="images" />
+						<img src={faker.image.avatar()} alt="images" />
+						<img src={faker.image.avatar()} alt="images" />
+						<img src={faker.image.avatar()} alt="images" />
+						<img src={faker.image.avatar()} alt="images" />
+						<img src={faker.image.avatar()} alt="images" />
+						<img src={faker.image.avatar()} alt="images" />
+						<img src={faker.image.avatar()} alt="images" />
+						<img src={faker.image.avatar()} alt="images" />
 					</div>
 				</div>
 			</div>

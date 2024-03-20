@@ -27,12 +27,7 @@
 	}
 
 	.selectBox {
-		display: none;
 		position: absolute;
-		left: 14rem;
-		top: 6rem;
-		width: 41.5rem;
-		height: 33rem;
 		background: #fff;
 		box-shadow: 0 0.4rem 1.6rem 0 rgba(0, 0, 0, 0.16);
 		border: none;
@@ -42,11 +37,31 @@
 			outline: none;
 		}
 
+		&Category {
+			left: 14rem;
+			top: 6rem;
+			width: 41.5rem;
+			height: 33rem;
+			font-size: 1.6rem;
+			color: $color-10;
+		}
+
 		option {
+			position: relative;
 			display: flex;
 			align-items: center;
 			padding-left: 6.4rem;
 			height: 5.5rem;
+
+			&::before {
+				position: absolute;
+				top: 1.5rem;
+				left: 2rem;
+				width: 2.4rem;
+				height: 2.4rem;
+				background: url('../../common/img/check.png') no-repeat center;
+				content: '';
+			}
 		}
 	}
 }
@@ -93,52 +108,126 @@
 
 	.label {
 		padding: 1.6rem 2.5rem;
-		width: 10rem;
+		width: 12.5rem;
 		border: 0.1rem solid $color-2;
 		border-radius: 1.6rem;
 	}
 
 	.dataTimeInner {
+		position: relative;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
-		gap: 1.5rem;
+		gap: 1rem;
+		flex: 1;
 
 		.dataTime {
-			position: relative;
 			display: flex;
 			flex-direction: row;
 			gap: 1rem;
+			width: 100%;
+
+			& > div {
+				flex: 1;
+			}
+
+			.timeValue,
+			.calendar {
+				width: 100%;
+
+				&:focus {
+					outline: none;
+				}
+			}
 
 			.calendarBox {
 				.calendar {
+					height: 5rem;
+					padding: 1.5rem 2rem;
+					font-size: 1.5rem;
+					color: $color-10;
+					border: 0.1rem solid $color-2;
+					border-radius: 1.6rem;
 				}
 			}
 
 			.timeBox {
-				.timeInput {
+				position: relative;
+
+				.timeValue {
+					height: 5rem;
+					padding: 1.5rem 2rem;
+					font-size: 1.5rem;
+					color: $color-10;
+					border: 0.1rem solid $color-2;
+					border-radius: 1.6rem;
 				}
 				.selectBox {
-					display: none;
+					position: absolute;
+					top: 6rem;
+					width: 12.5rem;
+					border: none;
+					box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.16);
+					z-index: 99;
+
+					&AmPm {
+						left: 0;
+					}
+
+					&Hour {
+						left: 3.2rem;
+					}
+
+					&Minute {
+						left: 5.6rem;
+					}
+
+					&:focus {
+						outline: none;
+					}
+
+					option {
+						padding: 1.8rem 2rem;
+						color: $color-10;
+						font-size: 1.6rem;
+					}
 				}
 			}
 		}
 	}
 }
 
-// content
-.inputWrap {
+// img upload
+.imageUploadWrap {
 	display: flex;
 	flex-direction: row;
+	align-items: flex-start;
 	gap: 2rem;
 
-	.inputBox {
+	.imageUploadBox {
+		position: relative;
 		flex: 1;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
+		gap: 1rem;
+		padding: 1.6rem 2rem;
+		color: $color-10;
+		font-size: 1.6rem;
+		font-weight: bold;
+		border: 0.1rem solid $color-2;
+		border-radius: 1.6rem;
 
-		.label,
+		.imageDot {
+			position: absolute;
+			top: 1.6rem;
+			right: 2rem;
+
+			span {
+				color: $red-color;
+			}
+		}
+		.labelTitle,
 		.imageBox {
 			width: 100%;
 		}
@@ -147,7 +236,28 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			height: 20vh;
+			min-height: 20vh;
+
+			img {
+				cursor: pointer;
+			}
+		}
+
+		.imageBoxSort {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 1.6rem;
+
+			img {
+				border-radius: 2rem;
+				width: calc(100% / 3 - 1.1rem);
+				height: 19rem;
+			}
 		}
 	}
+}
+
+.selectBox {
+	display: none;
 }

@@ -3,10 +3,13 @@
 import style from '@/app/(route)/writing/page.module.scss';
 import Image from 'next/image';
 import images from '@/app/common/img/add-photo-alternate.png';
+import n_Arrow from '@/app/common/img/chevron_right.png';
 import { useRef, useState } from 'react';
 
+import dayjs from 'dayjs';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import '@/app/(route)/_component/calendarCustom.css';
 
 import ReactQuill from 'react-quill';
 import QuillNoSSR from '@/app/(route)/_component/Editor';
@@ -20,6 +23,13 @@ export default function Writing() {
 
 	const quillInstance = useRef<ReactQuill>(null);
 	const [content, setContent] = useState<string>('');
+
+	const hour = () => {
+		for (let i = 1; i <= 12; i++) {
+			console.log(i);
+			return <option>{i}</option>;
+		}
+	};
 
 	console.log(content);
 
@@ -35,7 +45,12 @@ export default function Writing() {
 				<label htmlFor="" className={style.label}>
 					카테고리
 				</label>
-				<input type="text" className={style.input} placeholder="카테고리를 선택해주세요." />
+				<input
+					type="text"
+					className={style.input}
+					disabled
+					placeholder="카테고리를 선택해주세요."
+				/>
 				<select name="category" className={style.selectBox} size={6} multiple>
 					<option value="hand">손</option>
 					<option value="hair">헤어</option>
@@ -53,29 +68,55 @@ export default function Writing() {
 					<div className={style.dataTime}>
 						<div className={style.calendarBox}>
 							<input className={style.calendar} type="text" />
-							<Calendar locale="ko" onChange={onStartChange} value={startValue} />
+							<Calendar
+								locale="ko"
+								formatDay={(locale, date) => dayjs(date).format('D')}
+								calendarType="gregory"
+								next2Label={null}
+								prev2Label={null}
+								showNeighboringMonth={false}
+								onChange={onStartChange}
+								value={startValue}
+							/>
 						</div>
 						<div className={style.timeBox}>
-							<input type="text" />
+							<div className={style.timeInputBox}>
+								<input className={style.timeInput} type="text" value={`오후 `} />
+								<input className={style.timeInput} type="text" value={`12`} />
+								<input className={style.timeInput} type="text" value={`00`} />
+							</div>
 							<select name="am_pm" className={style.selectBox} size={6} multiple>
-								<option value="am">오전</option>
+								<option defaultValue="am">오전</option>
 								<option value="pm">오후</option>
 							</select>
 							<select name="hour" className={style.selectBox} size={6} multiple>
-								<option value="hand">손</option>
-								<option value="hair">헤어</option>
-								<option value="fitting">피팅</option>
-								<option value="face">얼굴</option>
-								<option value="body">전신</option>
-								<option value="etc">기타</option>
+								<option defaultValue="12">12</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
 							</select>
 							<select name="minute" className={style.selectBox} size={6} multiple>
-								<option value="hand">손</option>
-								<option value="hair">헤어</option>
-								<option value="fitting">피팅</option>
-								<option value="face">얼굴</option>
-								<option value="body">전신</option>
-								<option value="etc">기타</option>
+								<option defaultValue="00">00</option>
+								<option value="05">05</option>
+								<option value="10">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="25">25</option>
+								<option value="30">30</option>
+								<option value="35">35</option>
+								<option value="40">40</option>
+								<option value="45">45</option>
+								<option value="50">50</option>
+								<option value="55">55</option>
+								<option value="60">60</option>
 							</select>
 						</div>
 					</div>
@@ -83,11 +124,56 @@ export default function Writing() {
 					<div className={style.dataTime}>
 						<div className={style.calendarBox}>
 							<input className={style.calendar} type="text" />
-							<Calendar locale="ko" onChange={onEndChange} value={endValue} />
-							<div className={style.calendar}>{}</div>
+							<Calendar
+								locale="ko"
+								formatDay={(locale, date) => dayjs(date).format('D')}
+								calendarType="gregory"
+								next2Label={null}
+								prev2Label={null}
+								showNeighboringMonth={false}
+								onChange={onEndChange}
+								value={endValue}
+							/>
 						</div>
 						<div className={style.timeBox}>
-							<input type="text" />
+							<div className={style.timeInputBox}>
+								<input className={style.timeInput} type="text" value={`오후 `} />
+								<input className={style.timeInput} type="text" value={`12`} />
+								<input className={style.timeInput} type="text" value={`00`} />
+							</div>
+							<select name="am_pm" className={style.selectBox} size={6} multiple>
+								<option defaultValue="am">오전</option>
+								<option value="pm">오후</option>
+							</select>
+							<select name="hour" className={style.selectBox} size={6} multiple>
+								<option defaultValue="12">12</option>
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+							</select>
+							<select name="minute" className={style.selectBox} size={6} multiple>
+								<option defaultValue="00">00</option>
+								<option value="05">05</option>
+								<option value="10">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="25">25</option>
+								<option value="30">30</option>
+								<option value="35">35</option>
+								<option value="40">40</option>
+								<option value="45">45</option>
+								<option value="50">50</option>
+								<option value="55">55</option>
+								<option value="60">60</option>
+							</select>
 						</div>
 					</div>
 				</div>

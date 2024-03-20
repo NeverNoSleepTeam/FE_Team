@@ -89,6 +89,7 @@
 .dataTimeWrap {
 	display: flex;
 	flex-direction: row;
+	gap: 2rem;
 
 	.label {
 		padding: 1.6rem 2.5rem;
@@ -100,11 +101,26 @@
 	.dataTimeInner {
 		display: flex;
 		flex-direction: row;
+		align-items: center;
+		gap: 1.5rem;
 
 		.dataTime {
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			gap: 1rem;
+
 			.calendarBox {
+				.calendar {
+				}
 			}
+
 			.timeBox {
+				.timeInput {
+				}
+				.selectBox {
+					display: none;
+				}
 			}
 		}
 	}

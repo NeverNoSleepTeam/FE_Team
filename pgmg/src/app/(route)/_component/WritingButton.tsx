@@ -6,6 +6,17 @@ import { usePathname } from 'next/navigation';
 
 export default function WritingButton() {
 	const pathname = usePathname();
+	const postWhether = pathname.includes('/post');
+
+	if (postWhether) {
+		return (
+			<div className={style.buttonWrapper}>
+				<Link href={'/writing'} className={style.button}>
+					글 쓰기
+				</Link>
+			</div>
+		);
+	}
 	const postUploadHandler = () => {};
 
 	return (
@@ -14,12 +25,8 @@ export default function WritingButton() {
 				<button className={style.button} onClick={postUploadHandler}>
 					게시글 업로드
 				</button>
-			) : (
-				<Link href={'/writing'} className={style.button}>
-					글 쓰기
-				</Link>
-			)}
-			<span className={style.text}>* 해당 게시판은 “모델회원”만 작성가능합니다.</span>
+			) : null}
+			{/* <span className={style.text}>* 해당 게시판은 “모델회원”만 작성가능합니다.</span> */}
 		</div>
 	);
 }

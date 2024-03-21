@@ -27,12 +27,26 @@ export default function Writing() {
 	const quillInstance = useRef<ReactQuill>(null);
 	const [content, setContent] = useState<string>('');
 
-	const hour = () => {
-		for (let i = 1; i <= 12; i++) {
-			console.log(i);
-			return <option>{i}</option>;
-		}
-	};
+	// const onsubmit = async (e: any) => {
+	// 	e.preventDefault();
+	// 	const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/model-register`, {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 		},
+	// 		body: JSON.stringify({
+	// 			email: memo,
+	// 			height: height,
+	// 			weight: weight,
+	// 			top: top,
+	// 			bottom: bottom,
+	// 			shoes: shoes,
+	// 		}),
+	// 	});
+	// 	if (res.ok) {
+	// 		router.replace('/auth/signup/stepend');
+	// 	}
+	// };
 
 	console.log(content);
 

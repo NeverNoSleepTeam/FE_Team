@@ -16,12 +16,12 @@ export default function NavMenu() {
 				<span className={style.navText}>💎 모델</span>
 				<ul className={style.subNavMenu}>
 					<li>
-						<Link href={'/modelmember/wantit'}>
+						<Link href={'/post/modelmember/wantit'}>
 							<span>모델 필요해</span>
 						</Link>
 					</li>
 					<li>
-						<Link href={'/modelmember/doit'}>
+						<Link href={'/post/modelmember/doit'}>
 							<span>모델 해줄게</span>
 						</Link>
 					</li>
@@ -31,24 +31,24 @@ export default function NavMenu() {
 				<span className={style.navText}>📸 사진 촬영</span>
 				<ul className={style.subNavMenu}>
 					<li>
-						<Link href={'/photographer/wantit'}>
+						<Link href={'/post/photographer/wantit'}>
 							<span>사진작가 필요해</span>
 						</Link>
 					</li>
 					<li>
-						<Link href={'/photographer/doit'}>
+						<Link href={'/post/photographer/doit'}>
 							<span>사진작가 해줄게</span>
 						</Link>
 					</li>
 				</ul>
 			</li>
 			<li>
-				<Link href={'/photoshop'}>
+				<Link href={'/post/photoshop'}>
 					<span className={style.navText}>🎨 포토샵</span>
 				</Link>
 			</li>
 			<li>
-				<Link href={'/free'}>
+				<Link href={'/post/free'}>
 					<span className={style.navText}>✨ 재능기부</span>
 				</Link>
 			</li>

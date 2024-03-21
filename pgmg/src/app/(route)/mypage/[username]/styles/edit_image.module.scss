@@ -1,0 +1,15 @@
+@import '../../../../styles/color.module';
+.imageContainer{
+  display: grid;
+  grid-template: repeat(4, 27rem) / repeat(3, 19rem);
+  gap: 2rem;
+  .addImage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    //width: 27rem;
+    //height: 27rem;
+    border: dashed 0.1rem $color-2;
+    border-radius: 2rem;
+  }
+}

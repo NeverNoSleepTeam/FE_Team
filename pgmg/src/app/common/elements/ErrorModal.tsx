@@ -2,12 +2,16 @@
 
 import styles from './ErrorModal.module.scss';
 import { useRouter } from 'next/navigation';
-export default function ErrorModal() {
+type Props = {
+	title: string;
+	content: string;
+};
+export default function ErrorModal({ title, content }: Props) {
 	const router = useRouter();
 	return (
 		<div className={styles.modalBackground}>
 			<div className={styles.modal}>
-				<h1 className={styles.title}>파일업로드를 해주세요!</h1>
+				<h1 className={styles.title}>{title}</h1>
 				<div className={styles.subtitle}>
 					<span>사진작가로 회원가입을 하실 경우, URL 또는 PDF 파일을</span>
 

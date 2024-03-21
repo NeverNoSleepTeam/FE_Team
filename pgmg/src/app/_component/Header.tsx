@@ -42,7 +42,7 @@ export default function Header() {
 							</Link>
 						</li>
 						<li>
-							<Link href={'/modal'}>
+							<Link href={'/error'}>
 								<Image src={blueH ? chat_w : chat} alt="채팅" />
 							</Link>
 						</li>

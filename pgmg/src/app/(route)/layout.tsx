@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode, useCallback, useEffect } from 'react';
+import { ReactNode } from 'react';
 import layout from '@/app/styles/_layout.module.scss';
 import style from '@/app/_component/mainLayout.module.scss';
 
@@ -9,66 +9,21 @@ import Banner from '@/app/_component/Banner';
 import NavMenu from '@/app/_component/NavMenu';
 import Contents from '@/app/_component/Contents';
 import WritingButton from './_component/WritingButton';
-import { usePathname } from 'next/navigation';
+type Props = { children: ReactNode; modal: ReactNode };
 
-type Props = { children: ReactNode };
-
-export default function MainLayout({ children }: Props) {
-	const pathname = usePathname();
-	// const fixed = function () {
-	// 	if (pathname === '/') {
-	// 		if (window.scrollY === 460) {
-	// 			leftSectionFixed
-	// 		}
-	// 		leftSection
-	// 	} else {
-	// 		leftSection
-	// 	}
-	// }
-
-	// const FixedHandler = useCallback((e: any) => {
-	// 	e.preventDefault();
-	// 	if (window.scrollY > 460) {
-	// const element = document.querySelector('#myDiv');
-	// element.classList.replace('leftSectionInner', 'leftSectionInnerFixed');
-
-	// 	}
-	// }, []);
-
-	// if (pathname === '/') return FixedHandler;
-
-	// useEffect(() => {
-	// 	window.addEventListener('scroll', FixedHandler);
-	// 	return () => {
-	// 		window.removeEventListener('scroll', FixedHandler);
-	// 	};
-	// });
-
+export default function MainLayout({ children, modal }: Props) {
 	return (
 		<>
 			<Header />
 			<main>
 				<div className={style.wrapper}>
+					{modal}
 					<Banner />
 					<div className={style.mainWrapper}>
 						<div className={layout.container}>
 							<div className={style.inner}>
-								<section
-									className={style.leftSection}
-									// className={
-									// 	pathname !== '/'
-									// 		? style.leftSection : window.scrollY === 460
-									// 		? style.leftSectionFixed :
-									// }
-								>
-									<div
-										className={style.leftSectionInner}
-										// className={
-										// 	(window.scrollY as number) > 460
-										// 		? style.leftSectionInnerFixed
-										// 		: style.leftSectionInner
-										// }
-									>
+								<section className={style.leftSection}>
+									<div className={style.leftSectionInner}>
 										<nav>
 											<NavMenu />
 										</nav>

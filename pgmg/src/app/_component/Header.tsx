@@ -15,23 +15,16 @@ import calendar_w from '@/app/common/img/calender_w.png';
 import chat_w from '@/app/common/img/chat_w.png';
 
 import { usePathname } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 export default function Header() {
 	const router = usePathname();
 	const blueH = router.includes('/auth');
 	const [visible, setVisible] = useState(false);
 
-	const visibleHandler = () => {
-		setVisible(!visible);
-	};
-
-	useEffect(() => {
-		document.addEventListener('click', visibleHandler);
-		return () => {
-			document.removeEventListener('click', visibleHandler);
-		};
-	}, [visibleHandler]);
+	const visibleHandler = useCallback(() => {
+		setVisible(prev => !prev);
+	}, []);
 
 	return (
 		<header className={blueH ? style.headerblue : style.header}>

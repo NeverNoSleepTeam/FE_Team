@@ -7,16 +7,16 @@ import Banner from '@/app/_component/Banner';
 import NavMenu from '@/app/_component/NavMenu';
 import Contents from '@/app/_component/Contents';
 import WritingButton from './_component/WritingButton';
-import { usePathname } from 'next/navigation';
+type Props = { children: ReactNode; modal: ReactNode };
 
-type Props = { children: ReactNode };
 
-export default function MainLayout({ children }: Props) {
+export default function MainLayout({ children, modal }: Props) {
 	return (
 		<>
 			<Header />
 			<main>
 				<div className={style.wrapper}>
+					{modal}
 					<Banner />
 					<div className={style.mainWrapper}>
 						<div className={layout.container}>

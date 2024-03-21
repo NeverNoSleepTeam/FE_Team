@@ -1,7 +1,7 @@
 'use client';
 
 import layout from '@/app/(route)/mypage/[username]/styles/layout.module.scss';
-import style from '../styles/edit.module.scss';
+import style from '../styles/edit_profile.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 import OpenBtn from '@/../public/openbtn.svg';
@@ -9,6 +9,7 @@ import CloseBtn from '@/../public/closebtn.svg';
 import { useCallback, useState } from 'react';
 import useInput from '@/app/Hooks/useInput';
 import styles from '@/app/(auth)/auth/styles/step2.module.scss';
+import { useRouter } from 'next/navigation';
 export default function EditProfile() {
 	const [PasswordStateOne, SetPasswordStateOne] = useState(false);
 	const [GenderStateOne, SetGenderStateOne] = useState(false);
@@ -23,6 +24,7 @@ export default function EditProfile() {
 	const [LocalValue, SetLocalValue] = useState('');
 	const Gender = ['남자', '여자', 'MTF', 'FTM'];
 	const Global = ['내국인', '외국인'];
+	const router = useRouter();
 	const locations = [
 		'서울',
 		'인천',
@@ -52,16 +54,30 @@ export default function EditProfile() {
 	const HandleLocal = useCallback(() => {
 		SetLocalStateTwo(prev => !prev);
 	}, []);
+	const onClickGender = useCallback(() => {
+		SetGenderStateTwo(false);
+	}, []);
+	const onClickGlobal = useCallback(() => {
+		SetGlobalStateTwo(false);
+	}, []);
+	const onClickLocal = useCallback(() => {
+		SetLocalStateTwo(false);
+	}, []);
+
+	const onSubmit = useCallback(() => {
+		router.replace('/mypage/flow/error');
+	}, []);
+
 	return (
 		<div className={layout.rightContent}>
 			<div className={layout.rightInner}>
 				<div className={layout.controllBar}>
 					<ul className={`${layout.tabList} + ${layout.active}`}>
 						<li className={layout.active}>
-							<Link href={'/mypage'}>내 프로필</Link>
+							<Link href={'edit-my-profile'}>내 프로필</Link>
 						</li>
 						<li>
-							<Link href={'/mypage/heart_list'}>등록이미지</Link>
+							<Link href={'edit-my-image'}>등록이미지</Link>
 						</li>
 					</ul>
 				</div>
@@ -83,9 +99,9 @@ export default function EditProfile() {
 						<div className={style.editButton}>
 							<div className={style.inputDiv}>
 								{PasswordStateOne ? (
-									<span>일이삼사오육칠팔구십</span>
-								) : (
 									<input className={style.changeInput} />
+								) : (
+									<span>일이삼사오육칠팔구십</span>
 								)}
 							</div>
 							<button
@@ -101,16 +117,19 @@ export default function EditProfile() {
 						<div className={style.editButton}>
 							<div className={style.inputDiv}>
 								{GenderStateOne ? (
-									<span>남자</span>
-								) : (
 									<button className={style.changeButton} onClick={HandleGender}>
-										남자
+										데이터 나오면 수정해야함
 										{GenderStateTwo ? (
 											<Image src={OpenBtn} alt="리스트버튼" />
 										) : (
 											<Image src={CloseBtn} alt="버튼" />
 										)}
 									</button>
+								) : (
+									<>
+										<span>남자</span>
+										<Image src={OpenBtn} alt="버튼" />
+									</>
 								)}
 							</div>
 							<button
@@ -126,7 +145,9 @@ export default function EditProfile() {
 									{Gender.map(element => {
 										return (
 											<li>
-												<button>{element}</button>
+												<button type="button" value={element} onClick={onClickGlobal}>
+													{element}
+												</button>
 											</li>
 										);
 									})}
@@ -140,8 +161,21 @@ export default function EditProfile() {
 						<span className={style.title}>국적</span>
 						<div className={style.editButton}>
 							<div className={style.inputDiv}>
-								<span>내국인</span>
-								<Image src={OpenBtn} alt="리스트버튼" />
+								{GlobalStateOne ? (
+									<button type="button" className={style.changeButton} onClick={HandleGlobal}>
+										데이터 나오면 수정해야함
+										{GlobalStateTwo ? (
+											<Image src={OpenBtn} alt="리스트버튼" />
+										) : (
+											<Image src={CloseBtn} alt="버튼" />
+										)}
+									</button>
+								) : (
+									<>
+										<span>내국인</span>
+										<Image src={OpenBtn} alt="리스트버튼" />
+									</>
+								)}
 							</div>
 							<button
 								onClick={() => SetGlobalStateOne(prev => !prev)}
@@ -150,13 +184,43 @@ export default function EditProfile() {
 								수정
 							</button>
 						</div>
+						{GlobalStateTwo ? (
+							<div className={style.ListSelect}>
+								<ul>
+									{Global.map(element => {
+										return (
+											<li>
+												<button type="button" value={element} onClick={onClickGender}>
+													{element}
+												</button>
+											</li>
+										);
+									})}
+								</ul>
+							</div>
+						) : (
+							''
+						)}
 					</div>
 					<div className={style.InfoDiv}>
 						<span className={style.title}>지역</span>
 						<div className={style.editButton}>
 							<div className={style.inputDiv}>
-								<span>서울</span>
-								<Image src={OpenBtn} alt="리스트버튼" />
+								{LocalStateOne ? (
+									<button type="button" className={style.changeButton} onClick={HandleLocal}>
+										데이터 나오면 수정해야함
+										{GlobalStateTwo ? (
+											<Image src={OpenBtn} alt="리스트버튼" />
+										) : (
+											<Image src={CloseBtn} alt="버튼" />
+										)}
+									</button>
+								) : (
+									<>
+										<span>지역</span>
+										<Image src={OpenBtn} alt="리스트버튼" />
+									</>
+								)}
 							</div>
 							<button
 								onClick={() => SetLocalStateOne(prev => !prev)}
@@ -165,6 +229,23 @@ export default function EditProfile() {
 								수정
 							</button>
 						</div>
+						{LocalStateTwo ? (
+							<div className={style.ListSelect}>
+								<ul>
+									{locations.map(element => {
+										return (
+											<li>
+												<button type="button" value={element} onClick={onClickLocal}>
+													{element}
+												</button>
+											</li>
+										);
+									})}
+								</ul>
+							</div>
+						) : (
+							''
+						)}
 					</div>
 					<div className={style.InfoDiv}>
 						<span className={style.title}>지기소개</span>
@@ -177,7 +258,9 @@ export default function EditProfile() {
 					</div>
 				</div>
 				<div className={style.applyDiv}>
-					<button className={style.applyButton}>모두 적용하기</button>
+					<button className={style.applyButton} onClick={onSubmit}>
+						모두 적용하기
+					</button>
 					<span className={style.applyText}>* 수정한 부분 전체가 내 프로필에 모두 적용됩니다.</span>
 				</div>
 			</div>

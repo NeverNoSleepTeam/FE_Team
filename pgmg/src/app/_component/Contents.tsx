@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import PickCard from '../(route)/_component/PickCard';
 import SingleUserPost from '../(route)/_component/SingleUserPost';
 import { Title1 } from '../common/elements/Title';
+import { ReactNode } from 'react';
 
 type Props = { children: React.ReactNode };
 

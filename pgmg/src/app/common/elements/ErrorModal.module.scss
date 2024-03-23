@@ -1,0 +1,50 @@
+@import '../../styles/color.module';
+
+.modalBackground {
+	width: 100vw;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	position: absolute;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.4);
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+.modal {
+	background-color: white;
+	position: relative;
+	width: 59.9rem;
+	height: 31.7rem;
+	border-radius: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 32px;
+	gap: 3rem;
+}
+
+.title {
+	font-size: 3.6rem;
+	font-weight: bold;
+}
+.subtitle {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	color: $color-5;
+	font-size: 1.6rem;
+	font-weight: 500;
+}
+.OkButton {
+	width: 41.5rem;
+	padding: 1.6rem 3.6rem;
+	border: 0;
+	border-radius: 99.9rem;
+	background-color: $main-color;
+	color: white;
+	font-size: 2rem;
+	font-weight: 500;
+}

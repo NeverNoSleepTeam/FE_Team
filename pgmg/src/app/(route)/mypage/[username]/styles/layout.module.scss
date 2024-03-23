@@ -1,0 +1,135 @@
+@import '../../../../styles/color.module';
+
+.contentWrapper {
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+	padding-bottom: 8rem;
+
+	.leftContent {
+		width: 41.5rem;
+		position: relative;
+	}
+
+	.rightContent {
+		flex: 2;
+		display: flex;
+		flex-direction: column;
+		gap: 6rem;
+
+		.controllBar {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: 0.5rem;
+
+			.tabList {
+				display: flex;
+				align-items: center;
+				gap: 3rem;
+
+				li {
+					color: $color-3;
+					font-size: 1.6rem;
+					font-weight: bold;
+
+					&.active {
+						color: $color-10;
+
+						a {
+							span {
+								color: #efeff4;
+								background: $color-9;
+							}
+						}
+					}
+
+					a {
+						vertical-align: middle -webkit-baseline-middle;
+						cursor: pointer;
+
+						span {
+							padding: 0.6rem 1.2rem;
+							margin-left: 0.8rem;
+							background: #efeff4;
+							font-size: 1.4rem;
+							border-radius: 1.6rem;
+						}
+					}
+				}
+			}
+
+			.controll {
+				display: flex;
+				gap: 0.8rem;
+			}
+		}
+
+		.rightInner {
+			display: flex;
+			flex-direction: column;
+			gap: 2rem;
+
+			.postContent {
+				display: flex;
+				flex-direction: column;
+				gap: 2rem;
+
+				.postInner {
+					padding: 1rem 1rem 0 1rem;
+					border: 0.1rem solid $color-1;
+					border-radius: 2rem;
+				}
+
+				.noPost {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					padding: 0rem 3rem;
+					width: 100%;
+					min-height: 16.4rem;
+					border: 0.1rem solid $color-2;
+					border-radius: 2rem;
+
+					p {
+						color: $color-4;
+						font-size: 1.4rem;
+						text-align: center;
+					}
+				}
+			}
+		}
+
+		.imgContentWrap {
+			padding-top: 4rem;
+
+			.imgContent {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 2rem;
+
+				img {
+					width: calc((100% / 3) - 1.4rem);
+					border-radius: 2rem;
+				}
+
+				.noImage {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					padding: 0rem 3rem;
+					width: calc((100% / 3) - 1.4rem);
+					border: 0.1rem dashed $color-2;
+					border-radius: 2rem;
+
+					p {
+						color: $color-4;
+						font-size: 1.4rem;
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,36 @@
+@import '../../styles/color.module';
+
+.UserProfileCardWrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 1.4rem;
+
+	.UserProfileCard {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+
+		.UserProfileCardInfo {
+			padding-left: 1.6rem;
+
+			span {
+				display: block;
+				margin-bottom: 0.4rem;
+				color: $color-5;
+				font-size: 1.6rem;
+			}
+			a {
+				display: inline-block;
+				color: $color-10;
+				font-size: 2rem;
+			}
+		}
+	}
+	.iconButtons {
+		display: flex;
+		align-items: center;
+		gap: 2rem;
+		margin-right: 1rem;
+	}
+}

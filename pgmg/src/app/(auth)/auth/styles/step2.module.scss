@@ -1,0 +1,195 @@
+@import '@/app/styles/_mixins.module.scss';
+@import '../../../styles/color.module';
+
+.Container {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	padding: 20rem 0 20rem;
+	width: 41.5rem;
+	.Title {
+		font-size: 3.6rem;
+		font-weight: bold;
+		text-align: center;
+	}
+	.subTitle {
+		font-size: 1.6rem;
+		font-weight: 500;
+		text-align: center;
+	}
+	.SignUpForm {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+	.TextInput {
+		border: 0;
+		font-size: 1.6rem;
+		width: 24rem;
+		&:focus {
+			outline: none;
+		}
+	}
+	.SignupSubForm {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+	.FormTitle {
+		text-align: left;
+		font-size: 1.6rem;
+		font-weight: 500;
+		color: #4e4e53;
+	}
+	.TextDiv {
+		height : 5.5rem;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 0 2rem;
+		border: 0.1rem solid $color-2;
+		border-radius: 1.2rem;
+		&::placeholder {
+			color: $color-3;
+		}
+	}
+	.IdCheckBtn {
+		border: 0;
+		border-radius: 1.2rem;
+		padding: 0.8rem 1.6rem;
+		background-color: #250996;
+		font-size: 1.4rem;
+		color: white;
+		cursor: pointer;
+	}
+	.SuccessMessage {
+		color: $main-color;
+		font-size: 1.4rem;
+		font-weight: 500;
+	}
+	.ErrorMessage {
+		color: $red-color;
+		font-size: 1.4rem;
+		font-weight: 500;
+	}
+	.GenderForm {
+		border: 0;
+		width: 100%;
+		font-size: 1.6rem;
+		background-color: white;
+		display: flex;
+		justify-content: space-between;
+	}
+	.GenderList {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		box-shadow: 10px 10px 10px #efeff4;
+		button {
+			border: 0;
+			width: 100%;
+			padding: 1.8rem 2rem;
+			background-color: transparent;
+			font-size: 1.6rem;
+			font-weight: 500;
+			text-align: left;
+		}
+		button:hover {
+			background-color: #efeff4;
+		}
+	}
+	.IntroduceTextarea {
+		border: 0;
+		width: 100%;
+		height: 50vh;
+		font-size: 1.6rem;
+		&:focus {
+			outline: none;
+		}
+	}
+	.GobalList {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		box-shadow: 10px 10px 10px #efeff4;
+		button {
+			border: 0;
+			width: 100%;
+			padding: 1.8rem 2rem;
+			background-color: transparent;
+			font-size: 1.6rem;
+			font-weight: 500;
+			text-align: left;
+		}
+		button:hover {
+			background-color: #efeff4;
+		}
+	}
+	.LocationForm {
+		border: 0;
+		width: 100%;
+		font-size: 1.6rem;
+		background-color: white;
+		display: flex;
+		justify-content: space-between;
+	}
+	.LocalList {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		box-shadow: 10px 10px 10px #efeff4;
+		overflow-y: scroll;
+		height: 38.5rem;
+		button {
+			border: 0;
+			width: 100%;
+			padding: 1.8rem 2rem;
+			background-color: transparent;
+			font-size: 1.6rem;
+			font-weight: 500;
+			text-align: left;
+		}
+		button:hover {
+			background-color: #efeff4;
+		}
+	}
+	.NomalSusseceBtn {
+		border: 0;
+		width: 100%;
+		font-size: 2rem;
+		font-weight: 500;
+		border-radius: 99.9rem;
+		background-color: #250996;
+		color: white;
+		padding: 1.6rem 0;
+		cursor: pointer;
+	}
+	.SusseceBtn {
+		border: solid 0.1rem $color-2;
+		width: 100%;
+		font-size: 2rem;
+		font-weight: 500;
+		border-radius: 99.9rem;
+		background-color: #ffffff;
+		color: #4e4e53;
+		padding: 1.6rem 0;
+		cursor: pointer;
+	}
+}
+
+@include mobile{
+	.Container{
+		width: 35.3rem;
+		.Title{
+			font-size: 2.4rem;
+		}
+		.subTitle{
+			font-size: 1.2rem;
+		}
+		.IdCheckBtn {
+			border: 0;
+			padding: 0.8rem 1rem;
+		}
+	}
+}

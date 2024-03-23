@@ -1,0 +1,114 @@
+@import '../../../styles/color.module';
+@import '@/app/styles/_mixins.module.scss';
+.Container {
+	display: flex;
+	flex-direction: column;
+	gap: 3rem;
+	padding: 24rem 0 20rem;
+	.Title {
+		font-size: 3.6rem;
+		font-weight: bold;
+		text-align: center;
+	}
+	.subTitle {
+		font-size: 1.6rem;
+		font-weight: 500;
+		text-align: center;
+	}
+}
+.SignUpForm {
+	width: 41.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	.SignupSubForm {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+	.FormTitle {
+		text-align: left;
+		font-size: 1.6rem;
+		font-weight: 500;
+		color: $color-10;
+	}
+	.TextDiv {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding: 2rem;
+		border: solid 0.1rem $color-2;
+		border-radius: 1.2rem;
+		.TextInput {
+			border: 0;
+			font-size: 1.6rem;
+			font-weight: 500;
+			width: 25rem;
+			&::placeholder {
+				color: $color-3;
+			}
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+	.ListButtonForm {
+		border: 0;
+		width: 100%;
+		font-size: 1.6rem;
+		font-weight: 500;
+		background-color: white;
+		display: flex;
+		justify-content: space-between;
+	}
+	.ListForm {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		box-shadow: 10px 10px 10px #efeff4;
+		button {
+			border: 0;
+			width: 100%;
+			padding: 1.8rem 2rem;
+			background-color: transparent;
+			font-size: 1.6rem;
+			font-weight: 500;
+			text-align: left;
+		}
+		button:hover {
+			background-color: #efeff4;
+		}
+	}
+	.fileInput {
+		display: none;
+	}
+	.fileInfo {
+		color: $color-7;
+		font-size: 1.4rem;
+		font-weight: 500;
+	}
+	.NomalSusseceBtn {
+		border: 0;
+		width: 100%;
+		font-size: 2rem;
+		font-weight: 500;
+		border-radius: 99.9rem;
+		background-color: $main-color;
+		color: white;
+		padding: 1.6rem 0;
+		cursor: pointer;
+		margin-top: 4rem;
+	}
+}
+
+@include mobile{
+	.Container{
+		width: 35.3rem;
+		.Title{
+			font-size: 2.4rem;
+		}
+		.subTitle{
+			font-size: 1.2rem;
+		}
+	}
+}

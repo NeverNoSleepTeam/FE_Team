@@ -2,7 +2,6 @@ import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import KakaoProvider from 'next-auth/providers/kakao';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { callback } from 'next-auth/core/routes';
 export const handler = NextAuth({
 	pages: {
 		signIn: '/auth/login',
@@ -19,25 +18,34 @@ export const handler = NextAuth({
 
 		CredentialsProvider({
 			async authorize(credentials: Record<string, string>) {
-				const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/basic-login`, {
+				// 1. API 호출 준비
+				const requestBody = JSON.stringify({
+					email: credentials.email,
+					password: credentials.password,
+				});
+				const options = {
 					method: 'POST',
 					headers: {
-						'Content-Type': 'application/json',
+						'Content-Type': 'application/json; charset=utf-8',
 					},
-					body: JSON.stringify({
-						email: credentials.email,
-						passwd: credentials.password,
-					}),
-				});
-				const data = await response.text(); // 응답 데이터를 JSON 형식으로 파싱합니다.
+					body: requestBody,
+				};
+
+				// 2. API 호출 및 응답 처리
+				const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/login`, options);
+				const data = await response.json();
+				console.log(response);
+
+				// 3. 응답 결과에 따라 처리
 				if (response.ok) {
 					// 로그인 성공 처리
 					console.log('로그인 성공:', data);
 					return data; // 사용자 정보를 반환합니다.
 				} else {
 					// 로그인 실패 처리
-					console.log('로그인 실패:', data);
-					return null; // 로그인 실패로 처리합니다.
+					const errorMessage = data.message || '알 수 없는 오류';
+					console.error('로그인 실패:', errorMessage);
+					throw new Error(errorMessage); // 에러를 발생시켜 로그인 실패 처리합니다.
 				}
 			},
 		}),

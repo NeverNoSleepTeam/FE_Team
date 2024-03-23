@@ -1,10 +1,5 @@
-import { PostProfileSyle } from '../../_component/ProfileStyle';
+import PostDetailContent from '../../_component/PostDetailContent';
 
-export default function PostPage() {
-	return (
-		<>
-			<div>게시글 상세페이지</div>
-			<PostProfileSyle />
-		</>
-	);
+export default function Page() {
+	return <PostDetailContent />;
 }

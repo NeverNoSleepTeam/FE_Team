@@ -1,0 +1,37 @@
+@import '../../styles/color.module';
+
+.postDetailWrap {
+	display: flex;
+	gap: 1.5rem;
+	padding-bottom: 25rem;
+
+	.left {
+		flex: 1.5;
+	}
+
+	.right {
+		flex: 1;
+		padding: 2rem;
+		height: 100%;
+		border: 0.1rem solid $color-2;
+		border-radius: 1.6rem;
+
+		.rightTitle {
+			margin-bottom: 2rem;
+			color: $color-10;
+			font-size: 1.6rem;
+			font-weight: bold;
+		}
+
+		.rightInner {
+			display: flex;
+			flex-direction: column;
+			gap: 3rem;
+
+			img {
+				width: 100%;
+				border-radius: 1.6rem;
+			}
+		}
+	}
+}

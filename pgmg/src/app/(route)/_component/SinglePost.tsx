@@ -1,5 +1,6 @@
 import { faker } from '@faker-js/faker';
 import style from './singleUserPost.module.scss';
+import Link from 'next/link';
 
 export default function SinglePost() {
 	return (

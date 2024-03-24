@@ -1,4 +1,4 @@
-import style from '@/app/(route)/mypage/[username]/styles/layout.module.scss';
+import style from '@/app/(route)/[username]/styles/layout.module.scss';
 import SinglePost from '@/app/(route)/_component/SinglePost';
 import { Title4 } from '@/app/common/elements/Title';
 import { faker } from '@faker-js/faker';

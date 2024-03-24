@@ -12,13 +12,15 @@ export default function Mypage() {
 	const pathname = usePathname();
 	console.log(decodeURI(pathname));
 	const GetUser = async () => {
-		const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/user/my-page`, {
+		const local = localStorage.getItem('token');
+		const token = JSON.parse(local!)['token'];
+		const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/user/info/basic?Token=${token}`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 			},
 			body: JSON.stringify({
-				name: decodeURI(pathname.split('/')[1]),
+				name: pathname.split('/')[1],
 			}),
 		});
 		const jsonData = await res.json();

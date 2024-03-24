@@ -13,8 +13,8 @@ export default function local() {
 	const onSubmit = async (e: any) => {
 		e.preventDefault();
 		const result = await signIn('credentials', {
-			email: UserEmail,
-			password: UserPassword,
+			email: UserEmail.trim(),
+			password: UserPassword.trim(),
 			redirect: false, // 리다이렉션을 수동으로 처리하려면 false로 설정합니다.
 		});
 

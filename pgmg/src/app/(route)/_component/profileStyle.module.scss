@@ -63,7 +63,14 @@
 				}
 			}
 		}
-
+		.cameraBtn{
+			position: absolute;
+			z-index: 99;
+			bottom: 12.5rem;
+			right: 24rem;
+			width: 3rem;
+			height: 3rem;
+		}
 		.buttonWrap {
 			display: flex;
 			gap: 1rem;
@@ -78,14 +85,39 @@
 				font-size: 1.6rem;
 				font-weight: bold;
 				border-radius: 1.6rem;
-				color: #fff;
+				color: $color-4;
 
 				&:first-child {
 					background: $color-1;
 				}
 				&:last-child {
 					background: $main-color;
+					color : white;
 				}
+
+				img {
+					width: 1.6rem;
+					height: 1.6rem;
+					filter: opacity(0.5) drop-shadow(0 0 0 $color-4);
+				}
+			}
+		}
+		.modifybuttonWrap {
+			display: flex;
+			gap: 1rem;
+
+			button {
+				flex: 1;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.8rem;
+				height: 6rem;
+				font-size: 1.6rem;
+				font-weight: bold;
+				border-radius: 1.6rem;
+				color: $color-4;
+				background-color: $color-1;
 
 				img {
 					width: 1.6rem;
@@ -93,7 +125,6 @@
 				}
 			}
 		}
-
 		.userInfoWrapper {
 			display: flex;
 			flex-direction: column;

@@ -1,9 +1,9 @@
-import layout from '@/app/(route)/mypage/[username]/styles/layout.module.scss';
+import layout from '@/app/(route)/[username]/styles/layout.module.scss';
 import style from '../styles/edit_image.module.scss';
 import Link from 'next/link';
 import Image from 'next/image';
 import addImage from '@/app/common/img/add-photo-alternate.png';
-import AddImage from '@/app/(route)/mypage/[username]/_component/AddImage';
+import AddImage from '@/app/(route)/[username]/_component/AddImage';
 export default function EditImage() {
 	return (
 		<div className={layout.rightContent}>
@@ -11,10 +11,10 @@ export default function EditImage() {
 				<div className={layout.controllBar}>
 					<ul className={`${layout.tabList} + ${layout.active}`}>
 						<li className={layout.active}>
-							<Link href={'edit-my-profile'}>내 프로필</Link>
+							<Link href={'profile'}>내 프로필</Link>
 						</li>
 						<li>
-							<Link href={'edit-my-image'}>등록이미지</Link>
+							<Link href={'image'}>등록이미지</Link>
 						</li>
 					</ul>
 				</div>

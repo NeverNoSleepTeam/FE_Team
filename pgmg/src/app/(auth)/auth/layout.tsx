@@ -13,7 +13,7 @@ export default function Layout({ children, modal }: Props) {
 	const { data: session } = useSession();
 	if (session) {
 		const getToken = async () => {
-			const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/social-register-login`, {
+			const response = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/social`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

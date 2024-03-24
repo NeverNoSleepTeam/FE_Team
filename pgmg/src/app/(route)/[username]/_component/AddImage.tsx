@@ -1,4 +1,4 @@
-import style from '@/app/(route)/mypage/[username]/styles/edit_image.module.scss';
+import style from '@/app/(route)/[username]/styles/edit_image.module.scss';
 import Image from 'next/image';
 import addImage from '@/app/common/img/add-photo-alternate.png';
 

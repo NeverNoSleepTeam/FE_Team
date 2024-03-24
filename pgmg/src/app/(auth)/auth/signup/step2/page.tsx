@@ -61,7 +61,7 @@ export default function step2() {
 	const OnCheckId = useCallback(
 		async (e: any) => {
 			e.preventDefault();
-			const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/duplicate/email`, {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/user/duplicate/email`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export default function step2() {
 	const OnCheckName = useCallback(
 		async (e: any) => {
 			e.preventDefault();
-			const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/duplicate/name`, {
+			const res = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/user/duplicate/name`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ export default function step2() {
 				console.log('8글자 이상적어줘');
 				return null;
 			}
-			const result = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/auth/basic-register`, {
+			const result = await fetch(`${process.env.NEXT_PUBLIC_ENDPOINT}/user/join/basic`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',

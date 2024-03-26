@@ -16,8 +16,6 @@ export default function MainLayout({ children, modal }: Props) {
 			<Header />
 			<main>
 				<div className={style.wrapper}>
-					{modal}
-					<Banner />
 					<div className={style.mainWrapper}>
 						<div className={layout.container}>
 							<div className={style.inner}>
@@ -31,12 +29,14 @@ export default function MainLayout({ children, modal }: Props) {
 								</section>
 								<section className={style.contentSection}>
 									<div className={style.contentLayout}>
+										<Banner />
 										<Contents children={children} />
 									</div>
 								</section>
 							</div>
 						</div>
 					</div>
+					{modal}
 				</div>
 			</main>
 		</>

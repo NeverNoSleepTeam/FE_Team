@@ -10,9 +10,7 @@ export default function Banner() {
 	if (pathname === '/') {
 		return (
 			<div className={style.bannerWrapper}>
-				<div className={layout.container}>
-					<div className={style.banner}></div>
-				</div>
+				<div className={style.banner}></div>
 			</div>
 		);
 	}

@@ -37,12 +37,12 @@ export default function Header() {
 					</h1>
 					<ul className={style.headerList}>
 						<li>
-							<Link href={'/hot'}>
+							<Link href={'/:username/calendar'}>
 								<Image src={blueH ? calendar_w : calendar} alt="캘린더" />
 							</Link>
 						</li>
 						<li>
-							<Link href={'/error'}>
+							<Link href={'/:username/chat'}>
 								<Image src={blueH ? chat_w : chat} alt="채팅" />
 							</Link>
 						</li>
@@ -57,22 +57,22 @@ export default function Header() {
 								</div>
 								<ul className={style.myList}>
 									<li>
-										<Link href={'/mypage'}>
+										<Link href={'/:username'}>
 											<span>마이페이지</span>
 										</Link>
 									</li>
 									<li>
-										<Link href={'/calender'}>
+										<Link href={'/:username/calendar'}>
 											<span>캘린더</span>
 										</Link>
 									</li>
 									<li>
-										<Link href={'/chat'}>
+										<Link href={'/:username/chat'}>
 											<span>채팅</span>
 										</Link>
 									</li>
 									<li>
-										<Link href={'/mypage/heart_list'}>
+										<Link href={'/:username/heart_list'}>
 											<span>관심리스트</span>
 										</Link>
 									</li>

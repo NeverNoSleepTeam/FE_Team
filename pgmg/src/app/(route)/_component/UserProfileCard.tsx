@@ -7,6 +7,7 @@ import profile from '@/app/common/img/profile.png';
 import calender from '@/app/common/img/calender.png';
 import chat from '@/app/common/img/chat.png';
 import hart from '@/app/common/img/heart.png';
+import arrowRight from '@/app/common/img/chevron_right.png';
 
 export default function UserProfileCard() {
 	return (
@@ -17,7 +18,9 @@ export default function UserProfileCard() {
 				</Link>
 				<div className={style.UserProfileCardInfo}>
 					<span>일반회원</span>
-					<Link href={'/:username'}>대상혁</Link>
+					<Link href={'/:username'}>
+						대상혁 <Image src={arrowRight} alt="링크이동 화살표" />
+					</Link>
 				</div>
 			</div>
 			<div className={style.iconButtons}>

@@ -7,8 +7,8 @@ import Banner from '@/app/_component/Banner';
 import NavMenu from '@/app/_component/NavMenu';
 import Contents from '@/app/_component/Contents';
 import WritingButton from './_component/WritingButton';
-type Props = { children: ReactNode; modal: ReactNode };
 
+type Props = { children: ReactNode; modal?: ReactNode };
 
 export default function MainLayout({ children, modal }: Props) {
 	return (

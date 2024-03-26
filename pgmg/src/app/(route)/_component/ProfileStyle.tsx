@@ -1,6 +1,12 @@
 'use client';
+
 import style from './profileStyle.module.scss';
+import Link from 'next/link';
 import Image from 'next/image';
+
+import { useParams, usePathname, useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+
 import profileBg from '@/app/common/img/default_profile_bg.png';
 import postDetailProfileBG from '@/app/common/img/post_detail_default.png';
 import myProfile from '@/app/common/img/my_profile.png';
@@ -8,18 +14,15 @@ import heart from '@/app/common/img/heart.png';
 import calender_w from '@/app/common/img/calender_w.png';
 import chat from '@/app/common/img/chat_w.png';
 import camera from '@/app/common/img/camera.svg';
-import Link from 'next/link';
-import { ModelProfileInfoType, PhotoProfileInfoType } from './ProfileInfoType';
-import { useParams, usePathname, useRouter } from 'next/navigation';
-import { useSession } from 'next-auth/react';
 
-type Props = { url: string };
+import { ModelProfileInfoType, PhotoProfileInfoType } from './ProfileInfoType';
 
 export const ProfileStyle = ({ user }: any) => {
 	console.log(user);
 	const pathname = usePathname();
 	const router = useRouter();
 	console.log(pathname.split('/')[2]);
+
 	return (
 		<div className={style.profileStyleWrapper}>
 			<Image
@@ -34,7 +37,7 @@ export const ProfileStyle = ({ user }: any) => {
 					<div className={style.userProfileInner}>
 						<div className={style.userProfile}>
 							<Image className={style.profileImg} src={myProfile} alt="profile" />
-							<Image className={style.cameraBtn} src={camera} alt={'카메라'} />
+							{/* <Image className={style.cameraBtn} src={camera} alt={'카메라'} /> */}
 							<div className={style.nameWrap}>
 								<span className={style.name}>{user.name}</span>
 								<span className={style.nameState}>{user.Info}</span>
@@ -93,7 +96,7 @@ export const ProfileStyle = ({ user }: any) => {
 	);
 };
 
-export const PostProfileSyle = ({ url }: Props) => {
+export const PostProfileSyle = () => {
 	return (
 		<div className={style.postProfileWrapper}>
 			<Image

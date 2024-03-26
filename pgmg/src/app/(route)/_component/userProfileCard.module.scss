@@ -4,7 +4,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin-top: 1.4rem;
+	margin-top: 1rem;
 
 	.UserProfileCard {
 		display: flex;
@@ -20,8 +20,9 @@
 				color: $color-5;
 				font-size: 1.6rem;
 			}
+
 			a {
-				display: inline-block;
+				display: flex;
 				color: $color-10;
 				font-size: 2rem;
 			}

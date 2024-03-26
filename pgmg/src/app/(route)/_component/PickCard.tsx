@@ -7,7 +7,7 @@ export default function PickCard() {
 	return (
 		<div className={style.pickCard}>
 			<Link
-				href={'/'}
+				href={'/:username'}
 				className={style.pickCardImgwrapper}
 				style={{ backgroundImage: `url(${faker.image.avatar()})` }}
 			>

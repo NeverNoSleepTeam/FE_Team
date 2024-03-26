@@ -1,10 +1,15 @@
+'use client';
+
 import { faker } from '@faker-js/faker';
 import style from './singleUserPost.module.scss';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function SinglePost() {
+	const pathname = usePathname();
+
 	return (
-		<div className={style.singleCardContent}>
+		<Link href={`${pathname}/:postId`} className={style.singleCardContent}>
 			<div className={style.singleImgBox}>
 				<img src={faker.image.avatar()} alt="want image" />
 			</div>
@@ -21,6 +26,6 @@ export default function SinglePost() {
 					<span>기타</span>
 				</div>
 			</div>
-		</div>
+		</Link>
 	);
 }

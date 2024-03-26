@@ -12,12 +12,12 @@ export default function UserProfileCard() {
 	return (
 		<div className={style.UserProfileCardWrapper}>
 			<div className={style.UserProfileCard}>
-				<Link href={'/'}>
+				<Link href={'/:username'}>
 					<Image src={profile} alt="profile" />
 				</Link>
 				<div className={style.UserProfileCardInfo}>
 					<span>일반회원</span>
-					<Link href={'/'}>대상혁</Link>
+					<Link href={'/:username'}>대상혁</Link>
 				</div>
 			</div>
 			<div className={style.iconButtons}>
